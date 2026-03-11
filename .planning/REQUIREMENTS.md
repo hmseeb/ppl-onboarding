@@ -41,8 +41,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **ADMN-01**: Admin panel at /admin is password-protected (env var ADMIN_PASSWORD)
 - [x] **ADMN-02**: Admin password check includes server-side verification (not middleware-only) to prevent CVE-2025-29927 bypass
-- [ ] **ADMN-03**: Admin panel displays list of all brokers with: name, company, status (not_started/in_progress/completed), webhook received date, onboarding completed date, delivery preferences
-- [ ] **ADMN-04**: Admin panel includes copy-to-clipboard button for each broker's onboarding link
+- [x] **ADMN-03**: Admin panel displays list of all brokers with: name, company, status (not_started/in_progress/completed), webhook received date, onboarding completed date, delivery preferences
+- [x] **ADMN-04**: Admin panel includes copy-to-clipboard button for each broker's onboarding link
 
 ### Design & UX
 
@@ -120,8 +120,8 @@ Deferred to future release. Tracked but not in current roadmap.
 | GARD-02 | Phase 2 | Complete |
 | ADMN-01 | Phase 3 | Complete |
 | ADMN-02 | Phase 3 | Complete |
-| ADMN-03 | Phase 3 | Pending |
-| ADMN-04 | Phase 3 | Pending |
+| ADMN-03 | Phase 3 | Complete |
+| ADMN-04 | Phase 3 | Complete |
 | DSGN-01 | Phase 2 | Complete |
 | DSGN-02 | Phase 2 | Complete |
 | DSGN-03 | Phase 2 | Complete |
