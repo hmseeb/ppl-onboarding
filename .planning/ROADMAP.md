@@ -75,7 +75,11 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. Step transitions animate smoothly — steps slide/fade in/out without layout jumps or flicker on mobile
   2. On iOS Safari, the onboarding form is never obscured by the keyboard; the viewport adjusts correctly using dvh units
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Enhanced step transitions with reduced-motion support and Zod v4 deprecation fixes
+- [ ] 04-02-PLAN.md — iOS Safari viewport handling with dvh units and interactive-widget configuration
 
 ## Progress
 
@@ -87,4 +91,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 0/2 | Not started | - |
 | 2. Onboarding Flow | 0/5 | Not started | - |
 | 3. Admin Panel | 0/2 | Not started | - |
-| 4. Polish & Hardening | 0/TBD | Not started | - |
+| 4. Polish & Hardening | 0/2 | Not started | - |
