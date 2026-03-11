@@ -49,7 +49,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **DSGN-01**: Dark theme with light text and red accent color for CTAs and key numbers
 - [x] **DSGN-02**: Mobile-first responsive design with touch-friendly targets (min 44px)
 - [x] **DSGN-03**: BadAAAS logo placeholder displayed at top of every onboarding screen
-- [ ] **DSGN-04**: Smooth transitions between steps with subtle animations
+- [x] **DSGN-04**: Smooth transitions between steps with subtle animations
 - [x] **DSGN-05**: All copy uses direct, confident, money-motivated tone — no corporate fluff
 - [x] **DSGN-06**: ROI graphic on step 4 is visually impactful with personalized numbers that pop
 
@@ -58,7 +58,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INFR-01**: Next.js app deployed on Vercel with all environment variables configured
 - [x] **INFR-02**: Supabase project with brokers table schema matching webhook payload + onboarding fields
 - [x] **INFR-03**: Supabase keepalive mechanism (cron or scheduled ping) to prevent free-tier auto-pause
-- [ ] **INFR-04**: iOS Safari viewport handling using dvh units to prevent keyboard overlap issues
+- [x] **INFR-04**: iOS Safari viewport handling using dvh units to prevent keyboard overlap issues
 
 ## v2 Requirements
 
@@ -125,13 +125,13 @@ Deferred to future release. Tracked but not in current roadmap.
 | DSGN-01 | Phase 2 | Complete |
 | DSGN-02 | Phase 2 | Complete |
 | DSGN-03 | Phase 2 | Complete |
-| DSGN-04 | Phase 4 | Pending |
+| DSGN-04 | Phase 4 | Complete |
 | DSGN-05 | Phase 2 | Complete |
 | DSGN-06 | Phase 2 | Complete |
 | INFR-01 | Phase 1 | Complete |
 | INFR-02 | Phase 1 | Complete |
 | INFR-03 | Phase 1 | Complete |
-| INFR-04 | Phase 4 | Pending |
+| INFR-04 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 35 total

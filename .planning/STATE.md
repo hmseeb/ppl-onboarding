@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-11)
 
 **Core value:** Every broker who buys referrals completes onboarding fast, feels recognized, understands the network, and is set up to receive and close leads immediately.
-**Current focus:** Phase 3 — Admin Panel
+**Current focus:** Phase 4 — Polish & Hardening
 
 ## Current Position
 
-Phase: 3 of 4 (Admin Panel)
+Phase: 4 of 4 (Polish & Hardening)
 Plan: 2 of 2 in current phase
 Status: Phase complete, pending verification
-Last activity: 2026-03-11 — Completed 03-02-PLAN.md
+Last activity: 2026-03-11 — Completed 04-02-PLAN.md
 
-Progress: [█████████░] 90%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 7min
-- Total execution time: 0.23 hours
+- Total plans completed: 4
+- Average duration: 5min
+- Total execution time: 0.30 hours
 
 **By Phase:**
 
@@ -29,9 +29,10 @@ Progress: [█████████░] 90%
 |-------|-------|-------|----------|
 | 01 | 2 | 14min | 7min |
 | 03 | 2 | 10min | 5min |
+| 04 | 2 | 4min | 2min |
 
 **Recent Trend:**
-- Last 5 plans: 12min, 2min, 8min, 2min
+- Last 5 plans: 12min, 2min, 8min, 2min, 2min
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -43,6 +44,8 @@ Progress: [█████████░] 90%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
+- 04-02: Only broker-facing pages changed to min-h-dvh; admin/landing pages left with min-h-screen
+- 04-01: Kept AnimatePresence mode="wait" without overflow:hidden wrapper to avoid clipping dropdowns
 - 03-02: Server action for logout instead of separate API route
 - 03-02: BrokerTable as "use client" for clipboard interaction
 - 03-01: HMAC-SHA256 deterministic session cookie — avoids server-side session storage
@@ -71,5 +74,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-11
-Stopped at: Completed Phase 3, pending verification
+Stopped at: Completed Phase 4, pending verification
 Resume file: None
