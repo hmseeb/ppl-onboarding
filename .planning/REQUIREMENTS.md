@@ -55,8 +55,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure
 
-- [ ] **INFR-01**: Next.js app deployed on Vercel with all environment variables configured
-- [ ] **INFR-02**: Supabase project with brokers table schema matching webhook payload + onboarding fields
+- [x] **INFR-01**: Next.js app deployed on Vercel with all environment variables configured
+- [x] **INFR-02**: Supabase project with brokers table schema matching webhook payload + onboarding fields
 - [ ] **INFR-03**: Supabase keepalive mechanism (cron or scheduled ping) to prevent free-tier auto-pause
 - [ ] **INFR-04**: iOS Safari viewport handling using dvh units to prevent keyboard overlap issues
 
@@ -128,8 +128,8 @@ Deferred to future release. Tracked but not in current roadmap.
 | DSGN-04 | Phase 4 | Pending |
 | DSGN-05 | Phase 2 | Pending |
 | DSGN-06 | Phase 2 | Pending |
-| INFR-01 | Phase 1 | Pending |
-| INFR-02 | Phase 1 | Pending |
+| INFR-01 | Phase 1 | Complete |
+| INFR-02 | Phase 1 | Complete |
 | INFR-03 | Phase 1 | Pending |
 | INFR-04 | Phase 4 | Pending |
 
