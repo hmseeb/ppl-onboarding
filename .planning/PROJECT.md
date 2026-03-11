@@ -79,6 +79,7 @@ Every broker who buys referrals completes onboarding fast, feels like we already
 | Completion webhook back to GHL | Enables downstream automation (tagging, referral delivery triggers) | — Pending |
 | Token-based access, no auth | Brokers are sales pros, not tech people — zero friction access | — Pending |
 | Admin password via env var | Simple for v1, upgradeable to proper auth later | — Pending |
+| External cron via cron-job.org | Vercel cron is paid; cron-job.org is free and pings a keepalive endpoint | — Pending |
 
 ---
-*Last updated: 2026-03-11 after initialization*
+*Last updated: 2026-03-11 after cron-job.org decision*
