@@ -1,23 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Outfit, DM_Sans } from "next/font/google";
+import { Playfair_Display, Syne, Plus_Jakarta_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  variable: "--font-bebas",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
 });
@@ -42,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${bebasNeue.variable} ${outfit.variable} ${dmSans.variable} antialiased`}
+        className={`${playfairDisplay.variable} ${syne.variable} ${plusJakartaSans.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"

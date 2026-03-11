@@ -19,7 +19,10 @@ const steps = [
 export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
   return (
     <div className="py-10 space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Here&apos;s How This Works</h1>
+      <div className="space-y-2">
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">The process</p>
+        <h1 className="text-3xl font-bold tracking-tight">Here&apos;s How This Works</h1>
+      </div>
 
       {/* Timeline */}
       <div className="relative space-y-4 pl-8">
@@ -64,7 +67,7 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
         <Button
           type="button"
           onClick={onNext}
-          className="flex-1 min-h-[44px] text-base font-semibold glow-red"
+          className="flex-1 min-h-[44px] text-base font-semibold glow-gold"
         >
           Next
         </Button>

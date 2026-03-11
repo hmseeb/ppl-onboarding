@@ -32,11 +32,12 @@ export default async function AdminPage() {
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <div>
+            <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 mb-1">Admin</p>
             <h1 className="text-4xl font-bold tracking-tight text-foreground">
               Broker Dashboard
             </h1>
             <p className="mt-1 text-muted-foreground">
-              <span className="font-display text-2xl text-primary">{brokerList.length}</span>{' '}
+              <span className="font-display text-2xl text-primary italic">{brokerList.length}</span>{' '}
               broker{brokerList.length !== 1 ? 's' : ''}
             </p>
           </div>

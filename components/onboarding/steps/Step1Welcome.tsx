@@ -53,25 +53,26 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
   const displayValues = getValues()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-6">
-      <div className="space-y-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-8">
+      <div className="space-y-3">
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">Welcome aboard</p>
         <h1 className="text-3xl font-bold tracking-tight">
-          Welcome to the BadAAAS Network, {broker.first_name}.
+          {broker.first_name}, let&apos;s get you live.
         </h1>
-        <p className="text-muted-foreground">
-          You&apos;re locked in with <span className="font-display text-2xl text-primary">{broker.batch_size}</span> exclusive referrals. Let&apos;s get
+        <p className="text-muted-foreground leading-relaxed">
+          You&apos;re locked in with <span className="font-display text-2xl text-primary italic">{broker.batch_size}</span> exclusive referrals. Let&apos;s get
           you set up so they start hitting your phone.
         </p>
       </div>
 
-      <Card className="border-border/50">
+      <Card className="border-border/40 shimmer-gold">
         <CardContent className="pt-6 space-y-4">
           {!isEditing ? (
             <>
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Name</p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Name</p>
                     <p className="text-base font-medium">
                       {toTitleCase(displayValues.first_name)} {toTitleCase(displayValues.last_name)}
                     </p>
@@ -87,23 +88,23 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                   </Button>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">Company</p>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Company</p>
                   <p className="text-base font-medium">
                     {displayValues.company_name || 'Not specified'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">Email</p>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Email</p>
                   <p className="text-base font-medium">{displayValues.email}</p>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">Phone</p>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Phone</p>
                   <p className="text-base font-medium">
                     {formatPhone(displayValues.phone) || 'Not provided'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">Vertical(s)</p>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Vertical(s)</p>
                   <div className="flex gap-2 mt-1">
                     {broker.primary_vertical && (
                       <Badge variant="secondary">{broker.primary_vertical}</Badge>
@@ -114,7 +115,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">Batch Size</p>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Batch Size</p>
                   <p className="text-base font-medium">{broker.batch_size} referrals</p>
                 </div>
               </div>
@@ -188,11 +189,11 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
       </Card>
 
       <p className="text-sm text-muted-foreground text-center">
-        Everything look right? If anything needs updating, tap to edit.
+        Everything look right? Tap edit to make changes.
       </p>
 
-      <div className="pt-4">
-        <Button type="submit" className="w-full min-h-[44px] text-base font-semibold glow-red">
+      <div className="pt-2">
+        <Button type="submit" className="w-full min-h-[44px] text-base font-semibold glow-gold">
           Looks Good — Let&apos;s Go
         </Button>
       </div>

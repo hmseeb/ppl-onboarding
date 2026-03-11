@@ -52,12 +52,15 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
 
   return (
     <div className="py-10 space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">
-        You&apos;re All Set, <span className="text-primary">{firstName}</span>. Go Fund Some Deals.
-      </h1>
+      <div className="space-y-2">
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">You&apos;re in</p>
+        <h1 className="text-3xl font-bold tracking-tight">
+          All Set, <span className="text-primary">{firstName}</span>. Go Fund Some Deals.
+        </h1>
+      </div>
 
       {/* Summary Card */}
-      <Card className="border-border/50">
+      <Card className="border-border/50 shimmer-gold">
         <CardContent className="py-6 px-5 space-y-3">
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Name</p>
@@ -104,7 +107,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Batch Size</p>
             <p className="font-medium">
-              <span className="font-display text-2xl text-primary">{broker.batch_size}</span>{' '}
+              <span className="font-display text-2xl text-primary italic">{broker.batch_size}</span>{' '}
               referrals
             </p>
           </div>
@@ -114,7 +117,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
       <Card className="border-primary/20 bg-primary/5">
         <CardContent className="p-4">
           <p className="text-sm text-muted-foreground text-center">
-            Your <span className="font-display text-2xl text-primary">{broker.batch_size}</span> referrals are on the way. Watch your{' '}
+            Your <span className="font-display text-2xl text-primary italic">{broker.batch_size}</span> referrals are on the way. Watch your{' '}
             <span className="font-bold text-foreground">{getDeliveryDisplay(deliveryMethods)}</span> — and remember, speed to lead wins.
           </p>
         </CardContent>
@@ -122,7 +125,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
 
       {/* Dashboard link — no API call, just a redirect */}
       <a href="https://badaaas.com" className="block">
-        <Button className="w-full min-h-[44px] text-lg font-bold glow-red-lg">
+        <Button className="w-full min-h-[44px] text-lg font-bold glow-gold-lg">
           Go to Dashboard
         </Button>
       </a>

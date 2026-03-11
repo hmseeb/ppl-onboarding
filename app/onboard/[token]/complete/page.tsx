@@ -23,7 +23,7 @@ export default async function CompletePage({
   }
 
   return (
-    <div className="min-h-dvh bg-[radial-gradient(ellipse_at_center,_#131316_0%,_#09090B_70%)] text-foreground flex items-center justify-center px-4">
+    <div className="min-h-dvh bg-[radial-gradient(ellipse_at_center,_#0E0E14_0%,_#07070A_70%)] text-foreground flex items-center justify-center px-4">
       <Card className="max-w-lg w-full border-border/50 bg-card/80">
         <CardContent className="pt-8 pb-8 text-center space-y-6">
           <div>
@@ -36,7 +36,7 @@ export default async function CompletePage({
             You&apos;ve already completed your onboarding. Your referrals are being delivered.
           </p>
           <a href="https://badaaas.com" className="block w-full">
-            <Button className="w-full min-h-[44px] glow-red">Go to Dashboard</Button>
+            <Button className="w-full min-h-[44px] glow-gold">Go to Dashboard</Button>
           </a>
           <p className="text-sm text-muted-foreground">
             Questions? Text Daniel at{' '}

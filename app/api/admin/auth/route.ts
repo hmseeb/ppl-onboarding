@@ -27,7 +27,7 @@ export async function POST(request: Request) {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-          'Set-Cookie': `${ADMIN_COOKIE_NAME}=${cookieValue}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=${60 * 60 * 24}`,
+          'Set-Cookie': `${ADMIN_COOKIE_NAME}=${cookieValue}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${60 * 60 * 24}${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`,
         },
       }
     )
@@ -46,7 +46,7 @@ export async function DELETE() {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Set-Cookie': `${ADMIN_COOKIE_NAME}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`,
+        'Set-Cookie': `${ADMIN_COOKIE_NAME}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`,
       },
     }
   )

@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_#131316_0%,_#09090B_70%)] px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_#0E0E14_0%,_#07070A_70%)] px-4">
       <Card className="w-full max-w-sm border-border/50 bg-card/80 backdrop-blur-sm">
         <CardHeader className="text-center">
           <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 border border-primary/30">
@@ -65,14 +65,14 @@ export default function AdminLoginPage() {
                 className="h-12 bg-background border-border/50"
               />
               {error && (
-                <p className="text-sm text-red-500">{error}</p>
+                <p className="text-sm text-destructive">{error}</p>
               )}
             </div>
             <Button
               type="submit"
               disabled={isLoading || !password}
               size="lg"
-              className={`w-full h-12 text-base font-semibold ${!(isLoading || !password) ? 'glow-red' : ''}`}
+              className={`w-full h-12 text-base font-semibold ${!(isLoading || !password) ? 'glow-gold' : ''}`}
             >
               {isLoading ? 'Checking...' : 'Sign In'}
             </Button>

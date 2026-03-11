@@ -33,7 +33,7 @@ function StatusBadge({ status }: { status: BrokerStatus }) {
       return <Badge variant="secondary" className="bg-muted/50 text-muted-foreground text-[11px]">Not Started</Badge>
     case 'in_progress':
       return (
-        <Badge variant="outline" className="text-amber-400 border-amber-400/50 text-[11px]">
+        <Badge variant="outline" className="text-blue-400 border-blue-400/50 text-[11px]">
           In Progress
         </Badge>
       )
@@ -86,10 +86,12 @@ function BrokerCard({ broker }: { broker: Broker }) {
   return (
     <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
       {/* Summary row — always visible */}
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         onClick={() => setExpanded(!expanded)}
-        className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-muted/20 transition-colors"
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(!expanded) } }}
+        className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-muted/20 transition-colors cursor-pointer"
       >
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
@@ -111,7 +113,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
             expanded ? 'rotate-180' : ''
           }`}
         />
-      </button>
+      </div>
 
       {/* Expanded detail panel */}
       {expanded && (
@@ -142,7 +144,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
                 label="Batch"
                 value={
                   <span>
-                    <span className="text-primary font-display">{broker.batch_size}</span> referrals · ${Number(broker.deal_amount).toLocaleString()} (${pricePerLead}/lead)
+                    <span className="text-primary font-display italic">{broker.batch_size}</span> referrals · ${Number(broker.deal_amount).toLocaleString()} (${pricePerLead}/lead)
                   </span>
                 }
               />
@@ -166,7 +168,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
               <ContactHoursDisplay broker={broker} />
             </span>
             {broker.weekend_pause && (
-              <span className="flex items-center gap-1.5 text-amber-400">
+              <span className="flex items-center gap-1.5 text-primary">
                 <Pause className="h-3.5 w-3.5" />
                 Weekends paused
               </span>

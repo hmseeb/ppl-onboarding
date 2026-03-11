@@ -1,6 +1,6 @@
 'use client'
 
-import { Progress } from '@/components/ui/progress'
+import { Fragment } from 'react'
 
 interface ProgressBarProps {
   currentStep: number
@@ -9,14 +9,34 @@ interface ProgressBarProps {
 
 export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
   return (
-    <div className="flex items-end justify-between gap-4">
-      <div className="flex items-baseline">
-        <span className="font-display text-2xl text-primary">{currentStep}</span>
-        <span className="text-xs text-muted-foreground ml-1">/ {totalSteps}</span>
-      </div>
-      <div className="flex-1">
-        <Progress value={(currentStep / totalSteps) * 100} className="h-1.5" />
-      </div>
+    <div className="flex items-center w-full">
+      {Array.from({ length: totalSteps }, (_, i) => {
+        const step = i + 1
+        const isCompleted = step < currentStep
+        const isCurrent = step === currentStep
+        return (
+          <Fragment key={step}>
+            <div
+              className={`rounded-full transition-all duration-500 ${
+                isCurrent
+                  ? 'w-2.5 h-2.5 bg-primary glow-gold-sm'
+                  : isCompleted
+                    ? 'w-2 h-2 bg-primary/80'
+                    : 'w-1.5 h-1.5 bg-muted-foreground/25'
+              }`}
+            />
+            {step < totalSteps && (
+              <div className="flex-1 mx-1.5">
+                <div
+                  className={`h-px transition-all duration-500 ${
+                    isCompleted ? 'bg-primary/50' : 'bg-border/40'
+                  }`}
+                />
+              </div>
+            )}
+          </Fragment>
+        )
+      })}
     </div>
   )
 }

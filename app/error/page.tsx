@@ -4,7 +4,7 @@ import { X } from 'lucide-react'
 
 export default function ErrorPage() {
   return (
-    <div className="min-h-dvh bg-[radial-gradient(ellipse_at_center,_#131316_0%,_#09090B_70%)] text-foreground flex items-center justify-center px-4">
+    <div className="min-h-dvh bg-[radial-gradient(ellipse_at_center,_#0E0E14_0%,_#07070A_70%)] text-foreground flex items-center justify-center px-4">
       <Card className="max-w-lg w-full border-border/50 bg-card/80">
         <CardContent className="pt-8 pb-8 text-center space-y-6">
           <div>

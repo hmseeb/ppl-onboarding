@@ -84,7 +84,8 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-6">
-      <div className="space-y-2">
+      <div className="space-y-3">
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">Delivery setup</p>
         <h1 className="text-3xl font-bold tracking-tight">
           How do you want to receive referrals, {broker.first_name}?
         </h1>
@@ -103,7 +104,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
                   key={method.value}
                   className={`flex items-center gap-4 p-4 rounded-lg border cursor-pointer transition-colors min-h-[56px] ${
                     isSelected
-                      ? 'border-primary bg-primary/10 glow-red-sm'
+                      ? 'border-primary bg-primary/10 glow-gold-sm'
                       : 'border-border hover:border-muted-foreground/30'
                   }`}
                 >
@@ -278,7 +279,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
         >
           Back
         </Button>
-        <Button type="submit" className="flex-1 min-h-[44px] text-base font-semibold glow-red">
+        <Button type="submit" className="flex-1 min-h-[44px] text-base font-semibold glow-gold">
           Next
         </Button>
       </div>
