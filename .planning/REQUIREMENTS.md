@@ -9,12 +9,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Webhook & Data Layer
 
-- [ ] **HOOK-01**: API endpoint (POST /api/webhooks/ghl) accepts GHL webhook payload with all required fields (first_name, last_name, email, phone, company_name, state, primary_vertical, secondary_vertical, batch_size, deal_amount, ghl_contact_id)
-- [ ] **HOOK-02**: Webhook payload is validated with Zod schema before database write; malformed payloads return 400 with error details
-- [ ] **HOOK-03**: Broker record is stored in Supabase with a generated UUID token on successful webhook
-- [ ] **HOOK-04**: Webhook response returns JSON with onboarding_url, broker_name, and status ("created" or "exists")
-- [ ] **HOOK-05**: Duplicate webhooks for same ghl_contact_id are handled idempotently (upsert, return existing token URL)
-- [ ] **HOOK-06**: GET endpoint (/api/brokers/[token]) returns broker data and onboarding status (not_started, in_progress, completed)
+- [x] **HOOK-01**: API endpoint (POST /api/webhooks/ghl) accepts GHL webhook payload with all required fields (first_name, last_name, email, phone, company_name, state, primary_vertical, secondary_vertical, batch_size, deal_amount, ghl_contact_id)
+- [x] **HOOK-02**: Webhook payload is validated with Zod schema before database write; malformed payloads return 400 with error details
+- [x] **HOOK-03**: Broker record is stored in Supabase with a generated UUID token on successful webhook
+- [x] **HOOK-04**: Webhook response returns JSON with onboarding_url, broker_name, and status ("created" or "exists")
+- [x] **HOOK-05**: Duplicate webhooks for same ghl_contact_id are handled idempotently (upsert, return existing token URL)
+- [x] **HOOK-06**: GET endpoint (/api/brokers/[token]) returns broker data and onboarding status (not_started, in_progress, completed)
 
 ### Onboarding Flow
 
@@ -57,7 +57,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **INFR-01**: Next.js app deployed on Vercel with all environment variables configured
 - [x] **INFR-02**: Supabase project with brokers table schema matching webhook payload + onboarding fields
-- [ ] **INFR-03**: Supabase keepalive mechanism (cron or scheduled ping) to prevent free-tier auto-pause
+- [x] **INFR-03**: Supabase keepalive mechanism (cron or scheduled ping) to prevent free-tier auto-pause
 - [ ] **INFR-04**: iOS Safari viewport handling using dvh units to prevent keyboard overlap issues
 
 ## v2 Requirements
@@ -97,12 +97,12 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| HOOK-01 | Phase 1 | Pending |
-| HOOK-02 | Phase 1 | Pending |
-| HOOK-03 | Phase 1 | Pending |
-| HOOK-04 | Phase 1 | Pending |
-| HOOK-05 | Phase 1 | Pending |
-| HOOK-06 | Phase 1 | Pending |
+| HOOK-01 | Phase 1 | Complete |
+| HOOK-02 | Phase 1 | Complete |
+| HOOK-03 | Phase 1 | Complete |
+| HOOK-04 | Phase 1 | Complete |
+| HOOK-05 | Phase 1 | Complete |
+| HOOK-06 | Phase 1 | Complete |
 | ONBD-01 | Phase 2 | Pending |
 | ONBD-02 | Phase 2 | Pending |
 | ONBD-03 | Phase 2 | Pending |
@@ -130,7 +130,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | DSGN-06 | Phase 2 | Pending |
 | INFR-01 | Phase 1 | Complete |
 | INFR-02 | Phase 1 | Complete |
-| INFR-03 | Phase 1 | Pending |
+| INFR-03 | Phase 1 | Complete |
 | INFR-04 | Phase 4 | Pending |
 
 **Coverage:**
