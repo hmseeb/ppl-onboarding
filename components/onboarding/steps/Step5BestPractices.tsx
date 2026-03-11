@@ -35,16 +35,16 @@ export function Step5BestPractices({ onNext, onBack }: Step5BestPracticesProps) 
   return (
     <div className="py-10 space-y-6">
       <div className="space-y-2">
-        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">Playbook</p>
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Playbook</p>
         <h1 className="text-3xl font-bold tracking-tight">Brokers Who Close Follow These Rules</h1>
       </div>
 
       <div className="space-y-3">
         {practices.map((practice, index) => (
-          <Card key={index} className="border-border/50">
+          <Card key={index} className="border-border shadow-sm">
             <CardContent className="py-4 px-4">
               <div className="flex gap-4">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/30 text-primary font-display text-xl shrink-0 italic">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/20 text-primary font-display text-xl shrink-0 italic">
                   {index + 1}
                 </div>
                 <div className="flex-1 space-y-1">
@@ -70,7 +70,7 @@ export function Step5BestPractices({ onNext, onBack }: Step5BestPracticesProps) 
         <Button
           type="button"
           onClick={onNext}
-          className="flex-1 min-h-[44px] text-base font-semibold glow-gold"
+          className="flex-1 min-h-[44px] text-base font-semibold accent-glow"
         >
           Next
         </Button>

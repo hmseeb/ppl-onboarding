@@ -30,14 +30,14 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
   return (
     <div className="py-10 space-y-6">
       <div className="space-y-2">
-        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">Your ROI</p>
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Your ROI</p>
         <h1 className="text-3xl font-bold tracking-tight">Let&apos;s Set You Up for Success</h1>
       </div>
 
       {/* Section: How Referrals Work */}
       <div className="space-y-2">
         <h2 className="text-lg font-bold flex items-center">
-          <span className="w-1.5 h-1.5 rotate-45 bg-primary inline-block mr-2" />
+          <span className="w-0.5 h-4 bg-primary rounded-full inline-block mr-2.5" />
           How Referrals Work
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -51,7 +51,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
       {/* Section: Your Close Rate */}
       <div className="space-y-2">
         <h2 className="text-lg font-bold flex items-center">
-          <span className="w-1.5 h-1.5 rotate-45 bg-primary inline-block mr-2" />
+          <span className="w-0.5 h-4 bg-primary rounded-full inline-block mr-2.5" />
           Your Close Rate
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -67,7 +67,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
 
       {/* ROI Visual */}
       {roi ? (
-        <Card className="border-primary/30 glow-gold shimmer-gold">
+        <Card className="border-primary/20 accent-glow shimmer-gold shadow-sm">
           <CardContent className="py-6 px-5 space-y-4">
             <div className="text-center space-y-2">
               <p className="text-xs uppercase tracking-widest text-muted-foreground font-heading">Your Investment</p>
@@ -110,7 +110,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
           </CardContent>
         </Card>
       ) : (
-        <Card className="border-border/50">
+        <Card className="border-border shadow-sm">
           <CardContent className="py-6 text-center">
             <p className="text-muted-foreground">
               Contact Daniel for your personalized ROI breakdown.
@@ -125,7 +125,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
       {/* Section: Not Every Referral Will Pick Up */}
       <div className="space-y-2">
         <h2 className="text-lg font-bold flex items-center">
-          <span className="w-1.5 h-1.5 rotate-45 bg-primary inline-block mr-2" />
+          <span className="w-0.5 h-4 bg-primary rounded-full inline-block mr-2.5" />
           Not Every Referral Will Pick Up
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -140,7 +140,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
       {/* Section: This Is a Numbers Game */}
       <div className="space-y-2">
         <h2 className="text-lg font-bold flex items-center">
-          <span className="w-1.5 h-1.5 rotate-45 bg-primary inline-block mr-2" />
+          <span className="w-0.5 h-4 bg-primary rounded-full inline-block mr-2.5" />
           This Is a Numbers Game
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -163,7 +163,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
         <Button
           type="button"
           onClick={onNext}
-          className="flex-1 min-h-[44px] text-base font-semibold glow-gold"
+          className="flex-1 min-h-[44px] text-base font-semibold accent-glow"
         >
           Next
         </Button>

@@ -55,7 +55,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-8">
       <div className="space-y-3">
-        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">Welcome aboard</p>
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Welcome aboard</p>
         <h1 className="text-3xl font-bold tracking-tight">
           {broker.first_name}, let&apos;s get you live.
         </h1>
@@ -65,7 +65,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
         </p>
       </div>
 
-      <Card className="border-border/40 shimmer-gold">
+      <Card className="border-border shimmer-gold shadow-sm">
         <CardContent className="pt-6 space-y-4">
           {!isEditing ? (
             <>
@@ -193,7 +193,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
       </p>
 
       <div className="pt-2">
-        <Button type="submit" className="w-full min-h-[44px] text-base font-semibold glow-gold">
+        <Button type="submit" className="w-full min-h-[44px] text-base font-semibold accent-glow">
           Looks Good — Let&apos;s Go
         </Button>
       </div>

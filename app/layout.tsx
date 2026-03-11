@@ -1,22 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Syne, Plus_Jakarta_Sans } from "next/font/google";
+import { Fraunces, Archivo, Karla } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
 });
 
-const syne = Syne({
-  variable: "--font-syne",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const karla = Karla({
+  variable: "--font-karla",
   subsets: ["latin"],
   display: "swap",
 });
@@ -41,12 +41,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${playfairDisplay.variable} ${syne.variable} ${plusJakartaSans.variable} antialiased`}
+        className={`${fraunces.variable} ${archivo.variable} ${karla.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
+          defaultTheme="light"
+          forcedTheme="light"
           disableTransitionOnChange
         >
           {children}

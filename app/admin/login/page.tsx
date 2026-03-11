@@ -44,10 +44,10 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_#0E0E14_0%,_#07070A_70%)] px-4">
-      <Card className="w-full max-w-sm border-border/50 bg-card/80 backdrop-blur-sm">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <Card className="w-full max-w-sm border-border bg-card shadow-sm">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 border border-primary/30">
+          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 border border-primary/20">
             <Lock className="h-5 w-5 text-primary" />
           </div>
           <CardTitle className="text-xl font-heading tracking-wide">Admin Login</CardTitle>
@@ -62,7 +62,7 @@ export default function AdminLoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
                 autoFocus
-                className="h-12 bg-background border-border/50"
+                className="h-12 bg-input border-border"
               />
               {error && (
                 <p className="text-sm text-destructive">{error}</p>
@@ -72,7 +72,7 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={isLoading || !password}
               size="lg"
-              className={`w-full h-12 text-base font-semibold ${!(isLoading || !password) ? 'glow-gold' : ''}`}
+              className={`w-full h-12 text-base font-semibold ${!(isLoading || !password) ? 'accent-glow' : ''}`}
             >
               {isLoading ? 'Checking...' : 'Sign In'}
             </Button>

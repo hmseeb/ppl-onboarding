@@ -39,7 +39,7 @@ const timeSlots = [
   '10:00 PM',
 ]
 
-const selectClass = 'w-full min-h-[44px] rounded-lg border border-border/50 bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring'
+const selectClass = 'w-full min-h-[44px] rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring'
 
 export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   const defaultMethods: DeliveryMethod[] = broker.delivery_methods?.length
@@ -85,7 +85,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-6">
       <div className="space-y-3">
-        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">Delivery setup</p>
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Delivery setup</p>
         <h1 className="text-3xl font-bold tracking-tight">
           How do you want to receive referrals, {broker.first_name}?
         </h1>
@@ -93,7 +93,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </div>
 
       {/* Delivery Methods - Checkboxes (multi-select) */}
-      <Card className="border-border/50">
+      <Card className="border-border shadow-sm">
         <CardContent className="pt-6 space-y-3">
           <Label className="text-sm font-heading uppercase tracking-wider">Delivery Methods</Label>
           <div className="space-y-2">
@@ -104,8 +104,8 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
                   key={method.value}
                   className={`flex items-center gap-4 p-4 rounded-lg border cursor-pointer transition-colors min-h-[56px] ${
                     isSelected
-                      ? 'border-primary bg-primary/10 glow-gold-sm'
-                      : 'border-border hover:border-muted-foreground/30'
+                      ? 'border-primary bg-primary/5 accent-glow-sm'
+                      : 'border-border hover:border-muted-foreground/40'
                   }`}
                 >
                   <input
@@ -118,7 +118,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
                     className={`w-7 h-7 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
                       isSelected
                         ? 'border-primary bg-primary'
-                        : 'border-muted-foreground/50'
+                        : 'border-muted-foreground/40'
                     }`}
                   >
                     {isSelected && (
@@ -191,7 +191,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Contact Hours */}
-      <Card className="border-border/50">
+      <Card className="border-border shadow-sm">
         <CardContent className="pt-6 space-y-3">
           <Label htmlFor="contact_hours" className="text-sm font-heading uppercase tracking-wider">
             Best hours to receive referrals
@@ -246,7 +246,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Weekend Pause Toggle */}
-      <Card className="border-border/50">
+      <Card className="border-border shadow-sm">
         <CardContent className="pt-6">
           <label className="flex items-center justify-between cursor-pointer min-h-[44px]">
             <span className="font-heading font-semibold">Pause referrals on weekends?</span>
@@ -279,7 +279,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
         >
           Back
         </Button>
-        <Button type="submit" className="flex-1 min-h-[44px] text-base font-semibold glow-gold">
+        <Button type="submit" className="flex-1 min-h-[44px] text-base font-semibold accent-glow">
           Next
         </Button>
       </div>

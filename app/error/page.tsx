@@ -4,11 +4,11 @@ import { X } from 'lucide-react'
 
 export default function ErrorPage() {
   return (
-    <div className="min-h-dvh bg-[radial-gradient(ellipse_at_center,_#0E0E14_0%,_#07070A_70%)] text-foreground flex items-center justify-center px-4">
-      <Card className="max-w-lg w-full border-border/50 bg-card/80">
+    <div className="min-h-dvh bg-background text-foreground flex items-center justify-center px-4">
+      <Card className="max-w-lg w-full border-border bg-card shadow-sm">
         <CardContent className="pt-8 pb-8 text-center space-y-6">
           <div>
-            <div className="w-16 h-16 rounded-full bg-destructive/10 border-2 border-destructive/30 mx-auto mb-4 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-destructive/10 border-2 border-destructive/20 mx-auto mb-4 flex items-center justify-center">
               <X className="w-8 h-8 text-destructive" />
             </div>
             <h1 className="text-3xl font-bold tracking-tight">This Link Isn&apos;t Valid</h1>

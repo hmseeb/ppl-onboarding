@@ -23,11 +23,11 @@ export default async function CompletePage({
   }
 
   return (
-    <div className="min-h-dvh bg-[radial-gradient(ellipse_at_center,_#0E0E14_0%,_#07070A_70%)] text-foreground flex items-center justify-center px-4">
-      <Card className="max-w-lg w-full border-border/50 bg-card/80">
+    <div className="min-h-dvh bg-background text-foreground flex items-center justify-center px-4">
+      <Card className="max-w-lg w-full border-border bg-card shadow-sm">
         <CardContent className="pt-8 pb-8 text-center space-y-6">
           <div>
-            <div className="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary/30 mx-auto mb-4 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary/20 mx-auto mb-4 flex items-center justify-center">
               <Check className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-3xl font-bold tracking-tight">You&apos;re Already Onboarded</h1>
@@ -36,7 +36,7 @@ export default async function CompletePage({
             You&apos;ve already completed your onboarding. Your referrals are being delivered.
           </p>
           <a href="https://badaaas.com" className="block w-full">
-            <Button className="w-full min-h-[44px] glow-gold">Go to Dashboard</Button>
+            <Button className="w-full min-h-[44px] accent-glow">Go to Dashboard</Button>
           </a>
           <p className="text-sm text-muted-foreground">
             Questions? Text Daniel at{' '}

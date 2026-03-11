@@ -19,7 +19,7 @@ export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
             <div
               className={`rounded-full transition-all duration-500 ${
                 isCurrent
-                  ? 'w-2.5 h-2.5 bg-primary glow-gold-sm'
+                  ? 'w-2.5 h-2.5 bg-primary accent-glow-sm'
                   : isCompleted
                     ? 'w-2 h-2 bg-primary/80'
                     : 'w-1.5 h-1.5 bg-muted-foreground/25'

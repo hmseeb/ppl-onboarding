@@ -30,10 +30,10 @@ function formatTime(time: string | null): string {
 function StatusBadge({ status }: { status: BrokerStatus }) {
   switch (status) {
     case 'not_started':
-      return <Badge variant="secondary" className="bg-muted/50 text-muted-foreground text-[11px]">Not Started</Badge>
+      return <Badge variant="secondary" className="bg-muted text-muted-foreground text-[11px]">Not Started</Badge>
     case 'in_progress':
       return (
-        <Badge variant="outline" className="text-blue-400 border-blue-400/50 text-[11px]">
+        <Badge variant="outline" className="text-blue-600 border-blue-300 text-[11px]">
           In Progress
         </Badge>
       )
@@ -84,14 +84,14 @@ function BrokerCard({ broker }: { broker: Broker }) {
   const pricePerLead = broker.batch_size > 0 ? (broker.deal_amount / broker.batch_size).toFixed(0) : '\u2014'
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+    <div className="rounded-lg border border-border bg-card overflow-hidden shadow-sm">
       {/* Summary row — always visible */}
       <div
         role="button"
         tabIndex={0}
         onClick={() => setExpanded(!expanded)}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(!expanded) } }}
-        className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-muted/20 transition-colors cursor-pointer"
+        className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-muted/40 transition-colors cursor-pointer"
       >
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
@@ -117,7 +117,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
 
       {/* Expanded detail panel */}
       {expanded && (
-        <div className="border-t border-border/30 px-4 py-3 bg-muted/10 space-y-4">
+        <div className="border-t border-border/60 px-4 py-3 bg-muted/20 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
             {/* Left — broker info */}
             <div>
@@ -162,7 +162,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
           </div>
 
           {/* Preferences footer */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-2 border-t border-border/20 text-xs text-muted-foreground">
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-2 border-t border-border/40 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               <ContactHoursDisplay broker={broker} />
@@ -185,7 +185,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
 export function BrokerTable({ brokers }: { brokers: Broker[] }) {
   if (brokers.length === 0) {
     return (
-      <div className="flex items-center justify-center rounded-lg border border-dashed border-border/50 bg-card py-16">
+      <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-card py-16">
         <p className="text-muted-foreground">
           No brokers yet. Waiting for the first GHL webhook.
         </p>

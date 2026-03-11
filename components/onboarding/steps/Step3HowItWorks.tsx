@@ -20,7 +20,7 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
   return (
     <div className="py-10 space-y-6">
       <div className="space-y-2">
-        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">The process</p>
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">The process</p>
         <h1 className="text-3xl font-bold tracking-tight">Here&apos;s How This Works</h1>
       </div>
 
@@ -32,10 +32,10 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
         {steps.map((step, index) => (
           <div key={index} className="relative flex items-start gap-4">
             {/* Number badge */}
-            <div className="absolute -left-8 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 border border-primary/30 text-primary font-display text-base font-bold shrink-0 z-10">
+            <div className="absolute -left-8 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-display text-base font-bold shrink-0 z-10">
               {index + 1}
             </div>
-            <Card className="flex-1 border-border/50">
+            <Card className="flex-1 border-border shadow-sm">
               <CardContent className="py-3 px-4">
                 <p className="text-sm">{step}</p>
               </CardContent>
@@ -67,7 +67,7 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
         <Button
           type="button"
           onClick={onNext}
-          className="flex-1 min-h-[44px] text-base font-semibold glow-gold"
+          className="flex-1 min-h-[44px] text-base font-semibold accent-glow"
         >
           Next
         </Button>

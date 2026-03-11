@@ -53,14 +53,14 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
   return (
     <div className="py-10 space-y-6">
       <div className="space-y-2">
-        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">You&apos;re in</p>
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">You&apos;re in</p>
         <h1 className="text-3xl font-bold tracking-tight">
           All Set, <span className="text-primary">{firstName}</span>. Go Fund Some Deals.
         </h1>
       </div>
 
       {/* Summary Card */}
-      <Card className="border-border/50 shimmer-gold">
+      <Card className="border-border shimmer-gold shadow-sm">
         <CardContent className="py-6 px-5 space-y-3">
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Name</p>
@@ -125,7 +125,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
 
       {/* Dashboard link — no API call, just a redirect */}
       <a href="https://badaaas.com" className="block">
-        <Button className="w-full min-h-[44px] text-lg font-bold glow-gold-lg">
+        <Button className="w-full min-h-[44px] text-lg font-bold accent-glow-lg">
           Go to Dashboard
         </Button>
       </a>

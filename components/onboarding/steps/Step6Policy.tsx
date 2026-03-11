@@ -17,11 +17,11 @@ export function Step6Policy({ onNext, onBack }: Step6PolicyProps) {
   return (
     <div className="py-10 space-y-6">
       <div className="space-y-2">
-        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70">Our commitment</p>
+        <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Our commitment</p>
         <h1 className="text-3xl font-bold tracking-tight">Our Guarantee</h1>
       </div>
 
-      <Card className="border-t-2 border-t-primary shimmer-gold">
+      <Card className="border-t-2 border-t-primary shimmer-gold shadow-sm">
         <CardContent className="py-6 px-5 space-y-4">
           <p className="text-sm leading-relaxed">
             If you receive a referral with a disconnected number, fake information, or someone
@@ -38,7 +38,7 @@ export function Step6Policy({ onNext, onBack }: Step6PolicyProps) {
       </Card>
 
       {/* Checkbox */}
-      <div className="bg-secondary/50 rounded-lg p-4 flex items-center gap-3 min-h-[44px]">
+      <div className="bg-secondary/60 rounded-lg p-4 flex items-center gap-3 min-h-[44px]">
         <Checkbox
           id="policy-accept"
           checked={accepted}
@@ -63,7 +63,7 @@ export function Step6Policy({ onNext, onBack }: Step6PolicyProps) {
           type="button"
           onClick={onNext}
           disabled={!accepted}
-          className="flex-1 min-h-[44px] text-base font-semibold glow-gold"
+          className="flex-1 min-h-[44px] text-base font-semibold accent-glow"
         >
           Next
         </Button>
