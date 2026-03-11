@@ -5,74 +5,70 @@
 See: .planning/PROJECT.md (updated 2026-03-11)
 
 **Core value:** Every broker who buys referrals completes onboarding fast, feels recognized, understands the network, and is set up to receive and close leads immediately.
-**Current focus:** Phase 4 — Polish & Hardening
+**Current focus:** Post-roadmap refinements — deployed and live
 
 ## Current Position
 
-Phase: 4 of 4 (Polish & Hardening)
-Plan: 2 of 2 in current phase
-Status: Phase complete, pending verification
-Last activity: 2026-03-11 — Completed 04-02-PLAN.md
+Phase: All 4 phases complete ✅
+Status: Live on Vercel (ppl-onboarding.vercel.app)
+Last activity: 2026-03-11 — Post-roadmap UX improvements
 
-Progress: [██████████] 100%
+Progress: [██████████] 100% (roadmap complete)
+
+## Post-Roadmap Changes (2026-03-11 evening session)
+
+Changes made outside the GSD phase system, directly on main:
+
+1. **Multi-select delivery methods** — converted `delivery_method` (single text) to `delivery_methods` (text array). Brokers can now select SMS + Email + CRM Webhook simultaneously. Checkboxes replace radio buttons. Full-stack change across DB, Zod validation, UI, completion API, GHL webhook, Step 7 display, admin table.
+
+2. **Custom time window** — added `custom_hours_start` and `custom_hours_end` DB columns + UI. When broker selects "Custom time window" for contact hours, two `<select>` dropdowns appear with 30-min time slots (6 AM – 10 PM). Validation requires both times when custom is selected.
+
+3. **Admin dashboard rebuild** — replaced flat table with expandable card-based layout. Each broker card shows collapsed summary (name, status, company, batch size, date) and expands to reveal full details: email, phone, state, verticals, deal info with $/lead calc, delivery methods, delivery contact details, contact hours, weekend pause. Mobile responsive with single/two-column grid.
+
+4. **Daniel's contact updated** — phone number changed to (404) 939-4848 across all pages.
+
+5. **Checkbox sizing** — bumped delivery method checkboxes from 20px to 28px for mobile tappability.
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 5min
-- Total execution time: 0.30 hours
+- Total plans completed: 11 (across 4 phases)
+- Average duration: ~5min
+- Total execution time: ~1 hour
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 | 2 | 14min | 7min |
+| 02 | 5 | 20min | 4min |
 | 03 | 2 | 10min | 5min |
 | 04 | 2 | 4min | 2min |
-
-**Recent Trend:**
-- Last 5 plans: 12min, 2min, 8min, 2min, 2min
-- Trend: Stable
-
-*Updated after each plan completion*
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+All previous decisions plus:
 
-- 04-02: Only broker-facing pages changed to min-h-dvh; admin/landing pages left with min-h-screen
-- 04-01: Kept AnimatePresence mode="wait" without overflow:hidden wrapper to avoid clipping dropdowns
-- 03-02: Server action for logout instead of separate API route
-- 03-02: BrokerTable as "use client" for clipboard interaction
-- 03-01: HMAC-SHA256 deterministic session cookie — avoids server-side session storage
-- 03-01: proxy.ts default export named 'proxy' per Next.js 16 convention
-- 03-01: DELETE handler on auth route for logout (clears cookie with Max-Age=0)
-- 01-02: Select-then-insert over .upsert() to preserve existing broker tokens on duplicate webhooks
-- 01-02: request.text() + JSON.parse for future HMAC support
-- 01-01: Used createServiceClient (no cookies) for Route Handlers; createServerClient (cookies) for Server Components
-- 01-01: Supabase project PPL-Onboarding created in East US (North Virginia)
-- Pre-roadmap: Next.js + Supabase + Vercel (free tier) chosen as stack
-- Pre-roadmap: Token-in-URL access — no broker auth, zero friction
-- Pre-roadmap: Dynamic price per referral (deal_amount / batch_size), not hardcoded
-- Pre-roadmap: Completion webhook back to GHL to trigger downstream automation
-- Pre-roadmap: Admin password via env var ADMIN_PASSWORD (BadAaa$2026)
+- Post-roadmap: `delivery_method text` → `delivery_methods text[]` (postgres array) for multi-channel blast delivery
+- Post-roadmap: Custom hours stored as human-readable strings ("9:00 AM") not 24h format
+- Post-roadmap: Admin dashboard switched from `<Table>` to expandable `<Card>` layout for mobile responsiveness
+- Post-roadmap: Native `<input type="time">` replaced with `<select>` dropdowns — native picker broken on dark themes
+- Post-roadmap: Daniel's phone updated to (404) 939-4848
 
 ### Pending Todos
 
-None yet.
+None.
 
 ### Blockers/Concerns
 
-- **Phase 1**: GHL webhook payload field names must be confirmed against a real "Deal Won" test trigger before DB schema is locked — field name mismatch would require renaming Zod schema + DB columns
-- **Phase 2**: Outbound GHL completion webhook URL and expected payload format unconfirmed — Daniel must provide before lib/ghl.ts is implemented
-- **Phase 1**: Vercel Pro vs Hobby plan must be confirmed — Hobby plan prohibits commercial use
+- **Open**: GHL webhook payload field names must be confirmed against a real "Deal Won" test trigger
+- **Open**: Outbound GHL completion webhook URL unconfirmed — Daniel must provide the URL
+- **Open**: Vercel Pro vs Hobby plan must be confirmed — Hobby plan prohibits commercial use
 
 ## Session Continuity
 
-Last session: 2026-03-11
-Stopped at: Completed Phase 4, pending verification
+Last session: 2026-03-11 (evening)
+Stopped at: Post-roadmap UX improvements deployed to Vercel
 Resume file: None

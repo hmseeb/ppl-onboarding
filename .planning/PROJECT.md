@@ -19,7 +19,7 @@ Every broker who buys referrals completes onboarding fast, feels like we already
 - [ ] Webhook endpoint receives GHL payload, stores broker data, generates unique token, returns personalized onboarding URL
 - [ ] Personalized 7-step onboarding flow pre-filled with broker's webhook data
 - [ ] Step 1: Welcome screen with pre-filled summary card, inline editing capability
-- [ ] Step 2: Referral delivery preferences (SMS, email, CRM webhook with URL field, hours, weekend pause)
+- [ ] Step 2: Referral delivery preferences (multi-select: SMS, email, CRM webhook with URL field, custom time window, weekend pause)
 - [ ] Step 3: How Referrals Work education screen (visual timeline/cards)
 - [ ] Step 4: Setting Expectations with personalized ROI calculator using actual deal_amount/batch_size
 - [ ] Step 5: Best Practices for Closing (numbered cards)
@@ -36,7 +36,7 @@ Every broker who buys referrals completes onboarding fast, feels like we already
 - [ ] Dark theme with red accent color, premium feel
 - [ ] Smooth step transitions with subtle animations
 - [ ] BadAAAS logo placeholder on every screen
-- [ ] Daniel's contact: +1 (702) 412-9233
+- [ ] Daniel's contact: +1 (404) 939-4848
 
 ### Out of Scope
 
@@ -56,7 +56,7 @@ Every broker who buys referrals completes onboarding fast, feels like we already
 - **CRM**: GoHighLevel (GHL) is the source of truth. Webhook fires on "Deal Won" status change
 - **Tone**: Direct, confident, money-motivated. Talk like a closer talks to another closer. No corporate fluff
 - **ROI Math**: Price per referral = deal_amount / batch_size (dynamic, not hardcoded). This future-proofs for promos, volume discounts, and vertical-specific pricing
-- **Contact**: Daniel at +1 (702) 412-9233 for broker support
+- **Contact**: Daniel at +1 (404) 939-4848 for broker support
 - **Verticals**: MCA, SBA, Equipment Finance, Working Capital, Lines of Credit, Other
 
 ## Constraints
@@ -80,6 +80,9 @@ Every broker who buys referrals completes onboarding fast, feels like we already
 | Token-based access, no auth | Brokers are sales pros, not tech people — zero friction access | — Pending |
 | Admin password via env var | Simple for v1, upgradeable to proper auth later | — Pending |
 | External cron via cron-job.org | Vercel cron is paid; cron-job.org is free and pings a keepalive endpoint | — Pending |
+| Multi-select delivery methods (text[]) | Brokers want leads blasted to all channels simultaneously | ✅ Shipped |
+| Custom time window with select dropdowns | Native time inputs broken on dark themes; 30-min slot selects are reliable | ✅ Shipped |
+| Admin cards instead of table | Table wasn't mobile responsive and showed no detail view | ✅ Shipped |
 
 ---
-*Last updated: 2026-03-11 after cron-job.org decision*
+*Last updated: 2026-03-11 (evening session — post-roadmap refinements)*
