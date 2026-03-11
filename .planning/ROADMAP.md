@@ -45,7 +45,14 @@ Plans:
   3. A broker can close and reopen their onboarding link and resume at the step where they left off
   4. On step 7 completion, a webhook fires to GHL with the broker's ghl_contact_id, onboarding status, and delivery preferences
   5. A broker who revisits a completed link sees the "already onboarded" screen; a broker with an invalid token sees a clean error page with Daniel's contact info
-**Plans**: TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Install deps, shadcn init, dark theme, delivery schema, GHL webhook caller, API routes
+- [ ] 02-02-PLAN.md — Token routing, guard pages, OnboardingStepper, Steps 1-2 (Welcome + Delivery)
+- [ ] 02-03-PLAN.md — Steps 3-5 (How It Works, ROI Calculator, Best Practices)
+- [ ] 02-04-PLAN.md — Steps 6-7 (Replacement Policy, Confirmation + completion flow)
+- [ ] 02-05-PLAN.md — Build verification and visual/functional checkpoint
 
 ### Phase 3: Admin Panel
 **Goal**: Daniel can see every broker's onboarding status, delivery preferences, and key dates in one password-protected page, and copy any broker's onboarding link with one click
@@ -74,6 +81,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 0/2 | Not started | - |
-| 2. Onboarding Flow | 0/TBD | Not started | - |
+| 2. Onboarding Flow | 0/5 | Not started | - |
 | 3. Admin Panel | 0/TBD | Not started | - |
 | 4. Polish & Hardening | 0/TBD | Not started | - |
