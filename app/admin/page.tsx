@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { verifySessionCookie, ADMIN_COOKIE_NAME } from '@/lib/auth'
 import { createServiceClient } from '@/lib/supabase/server'
 import { BrokerTable } from '@/components/admin/BrokerTable'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import type { Broker } from '@/lib/types'
 
 const PAGE_SIZE = 10
@@ -56,7 +57,10 @@ export default async function AdminPage() {
               broker{total !== 1 ? 's' : ''}
             </p>
           </div>
-          <LogoutButton />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LogoutButton />
+          </div>
         </div>
         <BrokerTable initialBrokers={brokerList} initialTotal={total} pageSize={PAGE_SIZE} />
       </div>

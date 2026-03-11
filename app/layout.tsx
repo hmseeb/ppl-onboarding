@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Archivo, Karla } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -51,9 +50,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <div className="fixed bottom-4 right-4 z-50">
-            <ThemeToggle />
-          </div>
         </ThemeProvider>
       </body>
     </html>
