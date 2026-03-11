@@ -54,18 +54,18 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-8">
-      <div className="space-y-3">
+      <div className="space-y-3 animate-fadeSlideIn">
         <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Welcome aboard</p>
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-3xl font-heading font-bold tracking-tight">
           {broker.first_name}, let&apos;s get you live.
         </h1>
         <p className="text-muted-foreground leading-relaxed">
-          You&apos;re locked in with <span className="font-display text-2xl text-primary italic">{broker.batch_size}</span> exclusive referrals. Let&apos;s get
+          You&apos;re locked in with <span className="font-heading text-2xl text-primary italic">{broker.batch_size}</span> exclusive referrals. Let&apos;s get
           you set up so they start hitting your phone.
         </p>
       </div>
 
-      <Card className="border-border shimmer-gold shadow-sm">
+      <Card className="glass border-border shimmer-gold shadow-sm animate-fadeSlideIn delay-2">
         <CardContent className="pt-6 space-y-4">
           {!isEditing ? (
             <>
@@ -79,9 +79,9 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                   </div>
                   <Button
                     type="button"
-                    variant="outline"
+                    variant="ghost"
                     size="sm"
-                    className="text-xs"
+                    className="text-xs text-primary hover:text-primary/80 hover:bg-primary/10"
                     onClick={() => setIsEditing(true)}
                   >
                     Edit
@@ -128,7 +128,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                   <Input
                     id="first_name"
                     {...register('first_name')}
-                    className="min-h-[44px]"
+                    className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                   />
                   {errors.first_name && (
                     <p className="text-xs text-destructive">{errors.first_name.message}</p>
@@ -139,7 +139,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                   <Input
                     id="last_name"
                     {...register('last_name')}
-                    className="min-h-[44px]"
+                    className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                   />
                   {errors.last_name && (
                     <p className="text-xs text-destructive">{errors.last_name.message}</p>
@@ -152,7 +152,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                   id="email"
                   type="email"
                   {...register('email')}
-                  className="min-h-[44px]"
+                  className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 />
                 {errors.email && (
                   <p className="text-xs text-destructive">{errors.email.message}</p>
@@ -164,7 +164,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                   id="phone"
                   type="tel"
                   {...register('phone')}
-                  className="min-h-[44px]"
+                  className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 />
               </div>
               <div className="space-y-1">
@@ -172,7 +172,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                 <Input
                   id="company_name"
                   {...register('company_name')}
-                  className="min-h-[44px]"
+                  className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 />
               </div>
               <Button
@@ -188,12 +188,12 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
         </CardContent>
       </Card>
 
-      <p className="text-sm text-muted-foreground text-center">
+      <p className="text-sm text-muted-foreground text-center animate-fadeSlideIn delay-3">
         Everything look right? Tap edit to make changes.
       </p>
 
-      <div className="pt-2">
-        <Button type="submit" className="w-full min-h-[44px] text-base font-semibold accent-glow">
+      <div className="pt-2 animate-fadeSlideIn delay-4">
+        <Button type="submit" className="w-full min-h-[44px] text-base font-semibold accent-glow glow-pulse">
           Looks Good — Let&apos;s Go
         </Button>
       </div>

@@ -39,7 +39,7 @@ const timeSlots = [
   '10:00 PM',
 ]
 
-const selectClass = 'w-full min-h-[44px] rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring'
+const selectClass = 'w-full min-h-[44px] rounded-xl border border-border bg-[rgba(124,58,237,0.04)] backdrop-blur-sm px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50'
 
 export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   const defaultMethods: DeliveryMethod[] = broker.delivery_methods?.length
@@ -84,16 +84,16 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-6">
-      <div className="space-y-3">
+      <div className="space-y-3 animate-fadeSlideIn">
         <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Delivery setup</p>
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-3xl font-heading font-bold tracking-tight">
           How do you want to receive referrals, {broker.first_name}?
         </h1>
         <p className="text-sm text-muted-foreground">Select all that apply — we&apos;ll blast every channel you pick.</p>
       </div>
 
       {/* Delivery Methods - Checkboxes (multi-select) */}
-      <Card className="border-border shadow-sm">
+      <Card className="glass border-border shadow-sm animate-fadeSlideIn delay-1">
         <CardContent className="pt-6 space-y-3">
           <Label className="text-sm font-heading uppercase tracking-wider">Delivery Methods</Label>
           <div className="space-y-2">
@@ -102,10 +102,10 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
               return (
                 <label
                   key={method.value}
-                  className={`flex items-center gap-4 p-4 rounded-lg border cursor-pointer transition-colors min-h-[56px] ${
+                  className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-colors min-h-[56px] ${
                     isSelected
                       ? 'border-primary bg-primary/5 accent-glow-sm'
-                      : 'border-border hover:border-muted-foreground/40'
+                      : 'border-border hover:border-primary/30'
                   }`}
                 >
                   <input
@@ -147,7 +147,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
                 id="delivery_phone"
                 type="tel"
                 {...register('delivery_phone')}
-                className="min-h-[44px]"
+                className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 placeholder="(555) 555-5555"
               />
               {errors.delivery_phone && (
@@ -163,7 +163,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
                 id="delivery_email"
                 type="email"
                 {...register('delivery_email')}
-                className="min-h-[44px]"
+                className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 placeholder="you@company.com"
               />
               {errors.delivery_email && (
@@ -179,7 +179,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
                 id="crm_webhook_url"
                 type="url"
                 {...register('crm_webhook_url')}
-                className="min-h-[44px]"
+                className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 placeholder="https://your-crm.com/webhook"
               />
               {errors.crm_webhook_url && (
@@ -191,7 +191,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Contact Hours */}
-      <Card className="border-border shadow-sm">
+      <Card className="glass border-border shadow-sm animate-fadeSlideIn delay-2">
         <CardContent className="pt-6 space-y-3">
           <Label htmlFor="contact_hours" className="text-sm font-heading uppercase tracking-wider">
             Best hours to receive referrals
@@ -246,7 +246,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Weekend Pause Toggle */}
-      <Card className="border-border shadow-sm">
+      <Card className="glass border-border shadow-sm animate-fadeSlideIn delay-3">
         <CardContent className="pt-6">
           <label className="flex items-center justify-between cursor-pointer min-h-[44px]">
             <span className="font-heading font-semibold">Pause referrals on weekends?</span>
@@ -270,12 +270,12 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Navigation */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 animate-fadeSlideIn delay-4">
         <Button
           type="button"
-          variant="secondary"
+          variant="ghost"
           onClick={onBack}
-          className="flex-1 min-h-[44px]"
+          className="flex-1 min-h-[44px] text-primary hover:text-primary/80 hover:bg-primary/10"
         >
           Back
         </Button>

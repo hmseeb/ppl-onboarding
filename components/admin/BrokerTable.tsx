@@ -33,12 +33,12 @@ function StatusBadge({ status }: { status: BrokerStatus }) {
       return <Badge variant="secondary" className="bg-muted text-muted-foreground text-[11px]">Not Started</Badge>
     case 'in_progress':
       return (
-        <Badge variant="secondary" className="text-blue-600 border-0 text-[11px]">
+        <Badge variant="secondary" className="bg-primary/10 text-purple-400 border border-primary/20 text-[11px]">
           In Progress
         </Badge>
       )
     case 'completed':
-      return <Badge variant="default" className="text-[11px]">Completed</Badge>
+      return <Badge variant="default" className="bg-primary text-primary-foreground text-[11px]">Completed</Badge>
     default:
       return <Badge variant="secondary" className="text-[11px]">{status}</Badge>
   }
@@ -51,7 +51,7 @@ function DeliveryBadges({ methods }: { methods: string[] | null }) {
       {methods.map((method) => (
         <span
           key={method}
-          className="rounded bg-primary/10 text-primary border border-primary/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+          className="rounded-md bg-primary/10 text-primary border border-primary/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
         >
           {method === 'crm_webhook' ? 'CRM' : method}
         </span>
@@ -84,14 +84,14 @@ function BrokerCard({ broker }: { broker: Broker }) {
   const pricePerLead = broker.batch_size > 0 ? (broker.deal_amount / broker.batch_size).toFixed(0) : '\u2014'
 
   return (
-    <div className="rounded-lg border border-border bg-card overflow-hidden shadow-sm">
+    <div className="glass glass-hover rounded-xl overflow-hidden transition-all duration-200">
       {/* Summary row — always visible */}
       <div
         role="button"
         tabIndex={0}
         onClick={() => setExpanded(!expanded)}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpanded(!expanded) } }}
-        className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-muted/40 transition-colors cursor-pointer"
+        className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-primary/[0.04] transition-colors cursor-pointer"
       >
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
@@ -117,11 +117,11 @@ function BrokerCard({ broker }: { broker: Broker }) {
 
       {/* Expanded detail panel */}
       {expanded && (
-        <div className="border-t border-border/60 px-4 py-3 bg-muted/20 space-y-4">
+        <div className="border-t border-primary/10 px-4 py-3 space-y-4" style={{ background: 'rgba(124, 58, 237, 0.04)' }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
             {/* Left — broker info */}
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground/70 font-heading mb-1 mt-1">Broker Info</p>
+              <p className="text-[10px] uppercase tracking-widest text-primary/50 font-heading mb-1 mt-1">Broker Info</p>
               <DetailRow label="Email" value={broker.email} />
               <DetailRow label="Phone" value={broker.phone} />
               <DetailRow label="State" value={broker.state} />
@@ -139,7 +139,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
 
             {/* Right — deal + delivery */}
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground/70 font-heading mb-1 mt-1">Deal &amp; Delivery</p>
+              <p className="text-[10px] uppercase tracking-widest text-primary/50 font-heading mb-1 mt-1">Deal &amp; Delivery</p>
               <DetailRow
                 label="Batch"
                 value={
@@ -162,7 +162,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
           </div>
 
           {/* Preferences footer */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-2 border-t border-border/40 text-xs text-muted-foreground">
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 pt-2 border-t border-primary/10 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               <ContactHoursDisplay broker={broker} />
@@ -236,7 +236,7 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
 
   if (initialTotal === 0 && !search) {
     return (
-      <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-card py-16">
+      <div className="flex items-center justify-center glass rounded-xl border border-dashed border-primary/20 py-16">
         <p className="text-muted-foreground">
           No brokers yet. Waiting for the first GHL webhook.
         </p>
@@ -254,7 +254,7 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
           value={search}
           onChange={(e) => handleSearchChange(e.target.value)}
           placeholder="Search by name, email, or company..."
-          className="w-full rounded-lg border border-border bg-card pl-10 pr-10 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 shadow-sm"
+          className="w-full glass rounded-xl pl-10 pr-10 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
         />
         {search && (
           <button
@@ -269,14 +269,14 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
       {/* Broker cards */}
       <div className="space-y-2 relative min-h-[100px]">
         {loading && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/60 rounded-lg">
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/60 rounded-xl backdrop-blur-sm">
             <Loader2 className="h-6 w-6 animate-spin text-primary" />
           </div>
         )}
         {!loading && brokers.length === 0 && search && (
-          <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-card py-12">
+          <div className="flex items-center justify-center glass rounded-xl border border-dashed border-primary/20 py-12">
             <p className="text-muted-foreground text-sm">
-              No brokers match "{search}"
+              No brokers match &ldquo;{search}&rdquo;
             </p>
           </div>
         )}
@@ -287,11 +287,11 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
 
       {/* Pagination controls */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
+        <div className="flex items-center justify-between glass rounded-xl px-4 py-3">
           <button
             onClick={() => fetchBrokers(currentPage - 1, search)}
             disabled={currentPage <= 1 || loading}
-            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:border-primary/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:border-border"
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-foreground transition-all hover:bg-primary/10 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-foreground"
           >
             <ChevronLeft className="h-4 w-4" />
             Previous
@@ -305,7 +305,7 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
           <button
             onClick={() => fetchBrokers(currentPage + 1, search)}
             disabled={currentPage >= totalPages || loading}
-            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:border-primary/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:border-border"
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-foreground transition-all hover:bg-primary/10 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-foreground"
           >
             Next
             <ChevronRight className="h-4 w-4" />

@@ -19,9 +19,9 @@ const steps = [
 export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
   return (
     <div className="py-10 space-y-6">
-      <div className="space-y-2">
+      <div className="space-y-2 animate-fadeSlideIn">
         <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">The process</p>
-        <h1 className="text-3xl font-bold tracking-tight">Here&apos;s How This Works</h1>
+        <h1 className="text-3xl font-heading font-bold tracking-tight">Here&apos;s How This Works</h1>
       </div>
 
       {/* Timeline */}
@@ -30,12 +30,12 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
         <div className="absolute left-3 top-3 bottom-3 w-px bg-primary/20" />
 
         {steps.map((step, index) => (
-          <div key={index} className="relative flex items-start gap-4">
+          <div key={index} className={`relative flex items-start gap-4 animate-fadeSlideIn delay-${index + 1}`}>
             {/* Number badge */}
-            <div className="absolute -left-8 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-display text-base font-bold shrink-0 z-10">
+            <div className="absolute -left-8 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary font-heading text-base font-bold shrink-0 z-10">
               {index + 1}
             </div>
-            <Card className="flex-1 border-border shadow-sm">
+            <Card className="flex-1 glass border-border shadow-sm">
               <CardContent className="py-3 px-4">
                 <p className="text-sm">{step}</p>
               </CardContent>
@@ -45,7 +45,7 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
       </div>
 
       {/* Callout box */}
-      <Card className="border-primary/20 bg-primary/5 border-l-2 border-l-primary">
+      <Card className="border-primary/20 bg-primary/5 border-l-2 border-l-primary animate-fadeSlideIn delay-6">
         <CardContent className="py-4 px-4">
           <p className="text-sm font-medium">
             Every referral is someone who actively requested funding. Your job is to reach
@@ -55,12 +55,12 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
       </Card>
 
       {/* Navigation */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 animate-fadeSlideIn delay-6">
         <Button
           type="button"
-          variant="secondary"
+          variant="ghost"
           onClick={onBack}
-          className="flex-1 min-h-[44px]"
+          className="flex-1 min-h-[44px] text-primary hover:text-primary/80 hover:bg-primary/10"
         >
           Back
         </Button>

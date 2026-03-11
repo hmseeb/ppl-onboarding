@@ -34,17 +34,17 @@ const practices = [
 export function Step5BestPractices({ onNext, onBack }: Step5BestPracticesProps) {
   return (
     <div className="py-10 space-y-6">
-      <div className="space-y-2">
+      <div className="space-y-2 animate-fadeSlideIn">
         <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold">Playbook</p>
-        <h1 className="text-3xl font-bold tracking-tight">Brokers Who Close Follow These Rules</h1>
+        <h1 className="text-3xl font-heading font-bold tracking-tight">Brokers Who Close Follow These Rules</h1>
       </div>
 
       <div className="space-y-3">
         {practices.map((practice, index) => (
-          <Card key={index} className="border-border shadow-sm">
+          <Card key={index} className={`glass border-border shadow-sm animate-fadeSlideIn delay-${index + 1}`}>
             <CardContent className="py-4 px-4">
               <div className="flex gap-4">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/20 text-primary font-display text-xl shrink-0 italic">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/20 text-primary font-heading text-xl shrink-0">
                   {index + 1}
                 </div>
                 <div className="flex-1 space-y-1">
@@ -58,12 +58,12 @@ export function Step5BestPractices({ onNext, onBack }: Step5BestPracticesProps) 
       </div>
 
       {/* Navigation */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 animate-fadeSlideIn delay-6">
         <Button
           type="button"
-          variant="secondary"
+          variant="ghost"
           onClick={onBack}
-          className="flex-1 min-h-[44px]"
+          className="flex-1 min-h-[44px] text-primary hover:text-primary/80 hover:bg-primary/10"
         >
           Back
         </Button>

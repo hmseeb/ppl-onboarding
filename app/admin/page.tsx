@@ -44,25 +44,29 @@ export default async function AdminPage() {
   const brokerList = (brokers ?? []) as Broker[]
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen onboarding-bg">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="text-xs font-heading uppercase tracking-[0.2em] text-primary/70 font-semibold mb-1">Admin</p>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground">
+            <p className="animate-fadeSlideIn delay-1 text-xs font-heading uppercase tracking-[0.25em] text-primary/70 font-semibold mb-1.5">
+              ADMIN
+            </p>
+            <h1 className="animate-fadeSlideIn delay-2 text-4xl font-bold tracking-tight text-foreground font-heading">
               Broker Dashboard
             </h1>
-            <p className="mt-1 text-muted-foreground">
+            <p className="animate-fadeSlideIn delay-3 mt-1.5 text-muted-foreground">
               <span className="font-display text-2xl text-primary italic">{total}</span>{' '}
               broker{total !== 1 ? 's' : ''}
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="animate-fadeSlideIn delay-2 flex items-center gap-2">
             <ThemeToggle />
             <LogoutButton />
           </div>
         </div>
-        <BrokerTable initialBrokers={brokerList} initialTotal={total} pageSize={PAGE_SIZE} />
+        <div className="animate-fadeSlideIn delay-4">
+          <BrokerTable initialBrokers={brokerList} initialTotal={total} pageSize={PAGE_SIZE} />
+        </div>
       </div>
     </div>
   )
@@ -80,7 +84,7 @@ function LogoutButton() {
     >
       <button
         type="submit"
-        className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:border-primary/30 shadow-sm"
+        className="glass glass-hover rounded-lg px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-primary/40 shadow-sm"
       >
         Logout
       </button>

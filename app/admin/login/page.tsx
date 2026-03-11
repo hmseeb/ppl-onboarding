@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Lock } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
@@ -44,16 +43,27 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <Card className="w-full max-w-sm border-border bg-card shadow-sm">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 border border-primary/20">
-            <Lock className="h-5 w-5 text-primary" />
+    <div className="onboarding-bg min-h-dvh flex items-center justify-center px-4">
+      <div className="w-full max-w-sm">
+        {/* Glass card */}
+        <div className="glass rounded-xl p-8 space-y-6 animate-fadeSlideIn delay-1">
+          {/* Lock icon with purple gradient glow */}
+          <div className="animate-fadeSlideIn delay-2 flex justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 blur-xl opacity-50 bg-primary rounded-full scale-150" />
+              <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center">
+                <Lock className="h-6 w-6 text-primary drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]" />
+              </div>
+            </div>
           </div>
-          <CardTitle className="text-xl font-heading tracking-wide">Admin Login</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
+          {/* Title */}
+          <h1 className="animate-fadeSlideIn delay-3 text-xl font-heading tracking-wide text-center text-foreground">
+            Admin Login
+          </h1>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 animate-fadeSlideIn delay-4">
             <div className="flex flex-col gap-2">
               <Input
                 type="password"
@@ -62,7 +72,7 @@ export default function AdminLoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
                 autoFocus
-                className="h-12 bg-input border-border"
+                className="h-12 bg-input border-border/50 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
               />
               {error && (
                 <p className="text-sm text-destructive">{error}</p>
@@ -72,13 +82,13 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={isLoading || !password}
               size="lg"
-              className={`w-full h-12 text-base font-semibold ${!(isLoading || !password) ? 'accent-glow' : ''}`}
+              className={`w-full h-12 text-base font-semibold rounded-lg ${!(isLoading || !password) ? 'accent-glow' : ''}`}
             >
               {isLoading ? 'Checking...' : 'Sign In'}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

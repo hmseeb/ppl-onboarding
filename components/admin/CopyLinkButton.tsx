@@ -22,7 +22,7 @@ export function CopyLinkButton({ token }: { token: string }) {
       title="Copy onboarding link"
     >
       {copied ? (
-        <Check className="h-4 w-4 text-green-500" />
+        <Check className="h-4 w-4 text-primary" />
       ) : (
         <Copy className="h-4 w-4 text-muted-foreground" />
       )}
