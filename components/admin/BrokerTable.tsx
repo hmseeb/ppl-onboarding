@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import type { Broker, BrokerStatus } from '@/lib/types'
 import { Badge } from '@/components/ui/badge'
 import { CopyLinkButton } from '@/components/admin/CopyLinkButton'
-import { ChevronDown, ChevronLeft, ChevronRight, Phone, Mail, Globe, Clock, Pause, Loader2 } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight, Phone, Mail, Globe, Clock, Pause, Loader2, Search, X } from 'lucide-react'
 
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return '\u2014'
@@ -193,13 +193,17 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
   const [total, setTotal] = useState(initialTotal)
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState(false)
+  const [search, setSearch] = useState('')
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize))
 
-  async function fetchPage(page: number) {
+  async function fetchBrokers(page: number, query: string) {
     setLoading(true)
     try {
-      const res = await fetch(`/api/admin/brokers?page=${page}&pageSize=${pageSize}`)
+      const params = new URLSearchParams({ page: String(page), pageSize: String(pageSize) })
+      if (query) params.set('search', query)
+      const res = await fetch(`/api/admin/brokers?${params}`)
       if (!res.ok) throw new Error('Failed to fetch brokers')
       const data = await res.json()
       setBrokers(data.brokers)
@@ -212,7 +216,25 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
     }
   }
 
-  if (total === 0 && !loading) {
+  function handleSearchChange(value: string) {
+    setSearch(value)
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(() => {
+      fetchBrokers(1, value)
+    }, 300)
+  }
+
+  function clearSearch() {
+    setSearch('')
+    fetchBrokers(1, '')
+  }
+
+  // Cleanup debounce on unmount
+  useEffect(() => {
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
+  }, [])
+
+  if (initialTotal === 0 && !search) {
     return (
       <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-card py-16">
         <p className="text-muted-foreground">
@@ -224,11 +246,38 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
 
   return (
     <div className="space-y-4">
+      {/* Search bar */}
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => handleSearchChange(e.target.value)}
+          placeholder="Search by name, email, or company..."
+          className="w-full rounded-lg border border-border bg-card pl-10 pr-10 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 shadow-sm"
+        />
+        {search && (
+          <button
+            onClick={clearSearch}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+
       {/* Broker cards */}
-      <div className="space-y-2 relative">
+      <div className="space-y-2 relative min-h-[100px]">
         {loading && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/60 rounded-lg">
             <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          </div>
+        )}
+        {!loading && brokers.length === 0 && search && (
+          <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-card py-12">
+            <p className="text-muted-foreground text-sm">
+              No brokers match "{search}"
+            </p>
           </div>
         )}
         {brokers.map((broker) => (
@@ -240,7 +289,7 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
       {totalPages > 1 && (
         <div className="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
           <button
-            onClick={() => fetchPage(currentPage - 1)}
+            onClick={() => fetchBrokers(currentPage - 1, search)}
             disabled={currentPage <= 1 || loading}
             className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:border-primary/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:border-border"
           >
@@ -254,7 +303,7 @@ export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTa
           </span>
 
           <button
-            onClick={() => fetchPage(currentPage + 1)}
+            onClick={() => fetchBrokers(currentPage + 1, search)}
             disabled={currentPage >= totalPages || loading}
             className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:border-primary/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:border-border"
           >
