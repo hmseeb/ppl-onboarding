@@ -58,36 +58,36 @@ export function Step7Confirm({ broker, formData, onComplete, onBack }: Step7Conf
   }
 
   return (
-    <div className="py-8 space-y-6">
-      <h1 className="text-2xl font-bold">
-        You&apos;re All Set, {firstName}. Go Fund Some Deals.
+    <div className="py-10 space-y-6">
+      <h1 className="text-3xl font-bold tracking-tight">
+        You&apos;re All Set, <span className="text-primary">{firstName}</span>. Go Fund Some Deals.
       </h1>
 
       {/* Summary Card */}
-      <Card>
+      <Card className="border-border/50">
         <CardContent className="py-6 px-5 space-y-3">
           <div>
-            <p className="text-sm text-muted-foreground">Name</p>
-            <p className="font-medium">{firstName} {lastName}</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Name</p>
+            <p className="text-base font-medium">{firstName} {lastName}</p>
           </div>
           {company && (
             <div>
-              <p className="text-sm text-muted-foreground">Company</p>
-              <p className="font-medium">{company}</p>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Company</p>
+              <p className="text-base font-medium">{company}</p>
             </div>
           )}
           <div>
-            <p className="text-sm text-muted-foreground">Email</p>
-            <p className="font-medium">{email}</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Email</p>
+            <p className="text-base font-medium">{email}</p>
           </div>
           {phone && (
             <div>
-              <p className="text-sm text-muted-foreground">Phone</p>
-              <p className="font-medium">{formatPhone(phone)}</p>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Phone</p>
+              <p className="text-base font-medium">{formatPhone(phone)}</p>
             </div>
           )}
           <div>
-            <p className="text-sm text-muted-foreground">Vertical(s)</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Vertical(s)</p>
             <div className="flex gap-2 mt-1">
               {broker.primary_vertical && (
                 <Badge variant="secondary">{broker.primary_vertical}</Badge>
@@ -98,29 +98,36 @@ export function Step7Confirm({ broker, formData, onComplete, onBack }: Step7Conf
             </div>
           </div>
 
-          <Separator />
+          <Separator className="my-1" />
 
           <div>
-            <p className="text-sm text-muted-foreground">Delivery Method</p>
-            <p className="font-medium">{getDeliveryLabel(deliveryMethod)}</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Delivery Method</p>
+            <p className="text-base font-medium">{getDeliveryLabel(deliveryMethod)}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Batch Size</p>
-            <p className="font-medium">{broker.batch_size} referrals</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Batch Size</p>
+            <p className="font-medium">
+              <span className="font-display text-2xl text-primary">{broker.batch_size}</span>{' '}
+              referrals
+            </p>
           </div>
         </CardContent>
       </Card>
 
-      <p className="text-sm text-muted-foreground text-center">
-        Your {broker.batch_size} referrals are on the way. Watch your{' '}
-        {getDeliveryDisplay(deliveryMethod)} — and remember, speed to lead wins.
-      </p>
+      <Card className="border-primary/20 bg-primary/5">
+        <CardContent className="p-4">
+          <p className="text-sm text-muted-foreground text-center">
+            Your <span className="font-display text-2xl text-primary">{broker.batch_size}</span> referrals are on the way. Watch your{' '}
+            <span className="font-bold text-foreground">{getDeliveryDisplay(deliveryMethod)}</span> — and remember, speed to lead wins.
+          </p>
+        </CardContent>
+      </Card>
 
       {/* Primary CTA */}
       <Button
         onClick={handleClick}
         disabled={isSubmitting}
-        className="w-full min-h-[44px] text-base font-semibold"
+        className="w-full min-h-[44px] text-lg font-bold glow-red-lg"
       >
         {isSubmitting ? 'Completing...' : 'Go to Dashboard'}
       </Button>
@@ -128,7 +135,7 @@ export function Step7Confirm({ broker, formData, onComplete, onBack }: Step7Conf
       {/* Secondary link */}
       <p className="text-sm text-muted-foreground text-center">
         Questions? Text Daniel at{' '}
-        <a href="sms:+17024129233" className="text-primary underline">
+        <a href="sms:+17024129233" className="text-primary hover:text-primary/80 underline">
           +1 (702) 412-9233
         </a>
       </p>
@@ -138,7 +145,7 @@ export function Step7Confirm({ broker, formData, onComplete, onBack }: Step7Conf
         type="button"
         variant="ghost"
         onClick={onBack}
-        className="w-full min-h-[44px] text-muted-foreground"
+        className="w-full min-h-[44px] text-muted-foreground/60"
       >
         Back
       </Button>

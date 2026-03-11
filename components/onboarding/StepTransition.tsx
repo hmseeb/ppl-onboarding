@@ -11,9 +11,24 @@ export function StepTransition({ stepKey, children }: StepTransitionProps) {
   const shouldReduceMotion = useReducedMotion()
 
   const variants = {
-    initial: { opacity: 0, x: shouldReduceMotion ? 0 : 20 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: shouldReduceMotion ? 0 : -20 },
+    initial: {
+      opacity: 0,
+      x: shouldReduceMotion ? 0 : 30,
+      y: shouldReduceMotion ? 0 : 8,
+      scale: shouldReduceMotion ? 1 : 0.98,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+    },
+    exit: {
+      opacity: 0,
+      x: shouldReduceMotion ? 0 : -30,
+      y: shouldReduceMotion ? 0 : -4,
+      scale: shouldReduceMotion ? 1 : 0.98,
+    },
   }
 
   return (
@@ -25,7 +40,7 @@ export function StepTransition({ stepKey, children }: StepTransitionProps) {
         animate="animate"
         exit="exit"
         transition={{
-          duration: shouldReduceMotion ? 0 : 0.25,
+          duration: shouldReduceMotion ? 0 : 0.3,
           ease: [0.25, 0.1, 0.25, 1],
         }}
       >

@@ -28,12 +28,15 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
   const roi = calculateROI(broker.deal_amount, broker.batch_size)
 
   return (
-    <div className="py-8 space-y-6">
-      <h1 className="text-2xl font-bold">Let&apos;s Set You Up for Success</h1>
+    <div className="py-10 space-y-6">
+      <h1 className="text-3xl font-bold tracking-tight">Let&apos;s Set You Up for Success</h1>
 
       {/* Section: How Referrals Work */}
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold">How Referrals Work</h2>
+        <h2 className="text-lg font-bold flex items-center">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block mr-2" />
+          How Referrals Work
+        </h2>
         <p className="text-sm text-muted-foreground">
           Every referral is a real business owner who submitted a funding request and went
           through a soft pull. They&apos;ve been verified as someone with a real business and a
@@ -44,38 +47,41 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
 
       {/* Section: Your Close Rate */}
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold">Your Close Rate</h2>
+        <h2 className="text-lg font-bold flex items-center">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block mr-2" />
+          Your Close Rate
+        </h2>
         <p className="text-sm text-muted-foreground">
           Brokers on our network close between 5% and 15% depending on skill, speed, and
           follow-up.{roi ? (<>
             {' '}That means if you buy {formatNumber(broker.batch_size)} referrals, you should expect
-            to fund {roi.closedAt5Pct}-{Math.max(roi.closedAt15Pct, 1)} deals. At ${formatNumber(Math.round(roi.pricePerReferral))} per
+            to fund <span className="text-primary font-bold">{roi.closedAt5Pct}-{Math.max(roi.closedAt15Pct, 1)}</span> deals. At ${formatNumber(Math.round(roi.pricePerReferral))} per
             referral, that&apos;s a cost of ${formatNumber(Math.round(broker.deal_amount / Math.max(roi.closedAt15Pct, 1)))}-${formatNumber(Math.round(broker.deal_amount / roi.closedAt5Pct))} per
-            funded deal — and if your average commission is $3,000-$5,000+, the math works fast.
+            funded deal — and if your average commission is <span className="font-display text-xl text-primary">$3,000-$5,000</span>+, the math works fast.
           </>) : null}
         </p>
       </div>
 
       {/* ROI Visual */}
       {roi ? (
-        <Card className="border-primary/30">
+        <Card className="border-primary/30 glow-red">
           <CardContent className="py-6 px-5 space-y-4">
-            <div className="text-center space-y-1">
-              <p className="text-sm text-muted-foreground">Your Investment</p>
-              <p className="text-lg">
-                <span className="text-3xl font-bold text-primary">
+            <div className="text-center space-y-2">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground font-heading">Your Investment</p>
+              <div className="flex items-center justify-center gap-2 flex-wrap">
+                <span className="font-display text-5xl text-primary">
                   {formatNumber(broker.batch_size)}
-                </span>{' '}
-                referrals{' '}
-                <span className="text-muted-foreground">x</span>{' '}
-                <span className="text-3xl font-bold text-primary">
+                </span>
+                <span className="text-sm text-muted-foreground">referrals</span>
+                <span className="text-lg text-muted-foreground">x</span>
+                <span className="font-display text-5xl text-primary">
                   ${formatNumber(Math.round(roi.pricePerReferral))}
-                </span>{' '}
-                ={' '}
-                <span className="text-3xl font-bold text-primary">
+                </span>
+                <span className="text-lg text-muted-foreground">=</span>
+                <span className="font-display text-5xl text-primary">
                   ${formatNumber(broker.deal_amount)}
                 </span>
-              </p>
+              </div>
             </div>
 
             <Separator />
@@ -85,7 +91,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
                 At 5% close rate = <span className="text-primary font-bold">{roi.closedAt5Pct}</span> funded deal{roi.closedAt5Pct !== 1 ? 's' : ''}
               </p>
               <p className="text-sm text-muted-foreground">
-                Average commission = <span className="text-primary font-bold">$3,000-$5,000</span>
+                Average commission = <span className="font-display text-xl text-primary">$3,000-$5,000</span>
               </p>
             </div>
 
@@ -93,7 +99,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
 
             <div className="text-center">
               <p className="text-sm text-muted-foreground mb-1">ROI on your first batch</p>
-              <p className="text-4xl font-bold text-primary">
+              <p className="font-display text-6xl text-primary">
                 {((roi.closedAt5Pct * 3000) / broker.deal_amount).toFixed(1)}x -{' '}
                 {((Math.max(roi.closedAt15Pct, 1) * 5000) / broker.deal_amount).toFixed(1)}x
               </p>
@@ -101,7 +107,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
           </CardContent>
         </Card>
       ) : (
-        <Card>
+        <Card className="border-border/50">
           <CardContent className="py-6 text-center">
             <p className="text-muted-foreground">
               Contact Daniel for your personalized ROI breakdown.
@@ -115,7 +121,10 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
 
       {/* Section: Not Every Referral Will Pick Up */}
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold">Not Every Referral Will Pick Up</h2>
+        <h2 className="text-lg font-bold flex items-center">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block mr-2" />
+          Not Every Referral Will Pick Up
+        </h2>
         <p className="text-sm text-muted-foreground">
           These are business owners, not people sitting by the phone waiting for your call.
           Some will answer on the first dial. Some will take 3-5 follow-ups. Some won&apos;t
@@ -127,10 +136,13 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
 
       {/* Section: This Is a Numbers Game */}
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold">This Is a Numbers Game</h2>
+        <h2 className="text-lg font-bold flex items-center">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block mr-2" />
+          This Is a Numbers Game
+        </h2>
         <p className="text-sm text-muted-foreground">
           Don&apos;t judge the network off 2 or 3 referrals. Give it a real sample — work all{' '}
-          {broker.batch_size} properly, and then evaluate. Every experienced broker knows that
+          <span className="font-display text-xl text-primary">{broker.batch_size}</span> properly, and then evaluate. Every experienced broker knows that
           closing is about volume and consistency.
         </p>
       </div>
@@ -148,7 +160,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
         <Button
           type="button"
           onClick={onNext}
-          className="flex-1 min-h-[44px] text-base font-semibold"
+          className="flex-1 min-h-[44px] text-base font-semibold glow-red"
         >
           Next
         </Button>

@@ -54,24 +54,24 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="py-8 space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="py-10 space-y-6">
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-3xl font-bold tracking-tight">
           How do you want to receive referrals, {broker.first_name}?
         </h1>
       </div>
 
       {/* Delivery Method - Radio Buttons */}
-      <Card>
+      <Card className="border-border/50">
         <CardContent className="pt-6 space-y-3">
-          <Label className="text-base font-semibold">Delivery Method</Label>
+          <Label className="text-sm font-heading uppercase tracking-wider">Delivery Method</Label>
           <div className="space-y-2">
             {deliveryMethods.map((method) => (
               <label
                 key={method.value}
                 className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors min-h-[44px] ${
                   selectedMethod === method.value
-                    ? 'border-primary bg-primary/10'
+                    ? 'border-primary bg-primary/10 glow-red-sm'
                     : 'border-border hover:border-muted-foreground/30'
                 }`}
               >
@@ -150,15 +150,15 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Contact Hours */}
-      <Card>
+      <Card className="border-border/50">
         <CardContent className="pt-6 space-y-3">
-          <Label htmlFor="contact_hours" className="text-base font-semibold">
+          <Label htmlFor="contact_hours" className="text-sm font-heading uppercase tracking-wider">
             Best hours to receive referrals
           </Label>
           <select
             id="contact_hours"
             {...register('contact_hours')}
-            className="w-full min-h-[44px] rounded-lg border border-border bg-input px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full min-h-[44px] rounded-lg border border-border/50 bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           >
             {contactHoursOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -170,10 +170,10 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Weekend Pause Toggle */}
-      <Card>
+      <Card className="border-border/50">
         <CardContent className="pt-6">
           <label className="flex items-center justify-between cursor-pointer min-h-[44px]">
-            <span className="font-semibold">Pause referrals on weekends?</span>
+            <span className="font-heading font-semibold">Pause referrals on weekends?</span>
             <button
               type="button"
               role="switch"
@@ -203,7 +203,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
         >
           Back
         </Button>
-        <Button type="submit" className="flex-1 min-h-[44px] text-base font-semibold">
+        <Button type="submit" className="flex-1 min-h-[44px] text-base font-semibold glow-red">
           Next
         </Button>
       </div>

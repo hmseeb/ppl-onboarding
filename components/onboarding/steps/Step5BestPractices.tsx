@@ -33,20 +33,20 @@ const practices = [
 
 export function Step5BestPractices({ onNext, onBack }: Step5BestPracticesProps) {
   return (
-    <div className="py-8 space-y-6">
-      <h1 className="text-2xl font-bold">Brokers Who Close Follow These Rules</h1>
+    <div className="py-10 space-y-6">
+      <h1 className="text-3xl font-bold tracking-tight">Brokers Who Close Follow These Rules</h1>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {practices.map((practice, index) => (
-          <Card key={index}>
+          <Card key={index} className="border-border/50">
             <CardContent className="py-4 px-4">
               <div className="flex gap-4">
-                <div className="flex items-start justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0 leading-8 text-center">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/30 text-primary font-display text-xl shrink-0">
                   {index + 1}
                 </div>
                 <div className="flex-1 space-y-1">
-                  <p className="font-bold">{practice.title}</p>
-                  <p className="text-sm text-muted-foreground">{practice.body}</p>
+                  <p className="text-base font-bold">{practice.title}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{practice.body}</p>
                 </div>
               </div>
             </CardContent>
@@ -67,7 +67,7 @@ export function Step5BestPractices({ onNext, onBack }: Step5BestPracticesProps) 
         <Button
           type="button"
           onClick={onNext}
-          className="flex-1 min-h-[44px] text-base font-semibold"
+          className="flex-1 min-h-[44px] text-base font-semibold glow-red"
         >
           Next
         </Button>

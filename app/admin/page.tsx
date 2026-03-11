@@ -29,14 +29,15 @@ export default async function AdminPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground">
               Broker Dashboard
             </h1>
             <p className="mt-1 text-muted-foreground">
-              {brokerList.length} broker{brokerList.length !== 1 ? 's' : ''}
+              <span className="font-display text-2xl text-primary">{brokerList.length}</span>{' '}
+              broker{brokerList.length !== 1 ? 's' : ''}
             </p>
           </div>
           <LogoutButton />
@@ -59,7 +60,7 @@ function LogoutButton() {
     >
       <button
         type="submit"
-        className="rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
+        className="rounded-lg border border-border/50 bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 hover:border-primary/30"
       >
         Logout
       </button>

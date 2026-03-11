@@ -9,9 +9,12 @@ interface OnboardingHeaderProps {
 
 export function OnboardingHeader({ currentStep, totalSteps }: OnboardingHeaderProps) {
   return (
-    <div className="max-w-lg mx-auto px-4 pt-6">
-      <div className="text-center mb-4">
-        <span className="text-xl font-bold text-foreground tracking-tight">BadAAAS</span>
+    <div className="max-w-md mx-auto px-4 pt-8 pb-2">
+      <div className="text-center mb-6">
+        <span className="font-heading text-lg tracking-[0.2em] uppercase text-foreground">
+          BadAAAS
+        </span>
+        <div className="w-8 h-0.5 bg-primary mx-auto mt-2" />
       </div>
       <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
     </div>

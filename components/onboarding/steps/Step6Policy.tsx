@@ -15,14 +15,14 @@ export function Step6Policy({ onNext, onBack }: Step6PolicyProps) {
   const [accepted, setAccepted] = useState(false)
 
   return (
-    <div className="py-8 space-y-6">
-      <h1 className="text-2xl font-bold">Our Guarantee</h1>
+    <div className="py-10 space-y-6">
+      <h1 className="text-3xl font-bold tracking-tight">Our Guarantee</h1>
 
-      <Card>
+      <Card className="border-t-2 border-t-primary">
         <CardContent className="py-6 px-5 space-y-4">
           <p className="text-sm leading-relaxed">
             If you receive a referral with a disconnected number, fake information, or someone
-            who clearly never requested funding — we replace it. No questions asked.
+            who clearly never requested funding — we replace it. <span className="font-semibold text-foreground">No questions asked.</span>
           </p>
           <p className="text-sm leading-relaxed">
             Just flag it in your dashboard or text your rep.
@@ -35,13 +35,13 @@ export function Step6Policy({ onNext, onBack }: Step6PolicyProps) {
       </Card>
 
       {/* Checkbox */}
-      <div className="flex items-center gap-3 min-h-[44px]">
+      <div className="bg-secondary/50 rounded-lg p-4 flex items-center gap-3 min-h-[44px]">
         <Checkbox
           id="policy-accept"
           checked={accepted}
           onCheckedChange={(checked) => setAccepted(checked === true)}
         />
-        <Label htmlFor="policy-accept" className="text-sm cursor-pointer">
+        <Label htmlFor="policy-accept" className="text-sm font-medium cursor-pointer">
           I understand the referral replacement policy
         </Label>
       </div>
@@ -60,7 +60,7 @@ export function Step6Policy({ onNext, onBack }: Step6PolicyProps) {
           type="button"
           onClick={onNext}
           disabled={!accepted}
-          className="flex-1 min-h-[44px] text-base font-semibold"
+          className="flex-1 min-h-[44px] text-base font-semibold glow-red"
         >
           Next
         </Button>

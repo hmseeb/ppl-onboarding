@@ -18,21 +18,21 @@ const steps = [
 
 export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
   return (
-    <div className="py-8 space-y-6">
-      <h1 className="text-2xl font-bold">Here&apos;s How This Works</h1>
+    <div className="py-10 space-y-6">
+      <h1 className="text-3xl font-bold tracking-tight">Here&apos;s How This Works</h1>
 
       {/* Timeline */}
       <div className="relative space-y-4 pl-8">
         {/* Vertical line */}
-        <div className="absolute left-3 top-3 bottom-3 w-px bg-border" />
+        <div className="absolute left-3 top-3 bottom-3 w-px bg-primary/20" />
 
         {steps.map((step, index) => (
           <div key={index} className="relative flex items-start gap-4">
             {/* Number badge */}
-            <div className="absolute -left-8 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold shrink-0 z-10">
+            <div className="absolute -left-8 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 border border-primary/30 text-primary font-display text-base font-bold shrink-0 z-10">
               {index + 1}
             </div>
-            <Card className="flex-1">
+            <Card className="flex-1 border-border/50">
               <CardContent className="py-3 px-4">
                 <p className="text-sm">{step}</p>
               </CardContent>
@@ -42,7 +42,7 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
       </div>
 
       {/* Callout box */}
-      <Card className="border-primary/30 bg-primary/5">
+      <Card className="border-primary/20 bg-primary/5 border-l-2 border-l-primary">
         <CardContent className="py-4 px-4">
           <p className="text-sm font-medium">
             Every referral is someone who actively requested funding. Your job is to reach
@@ -64,7 +64,7 @@ export function Step3HowItWorks({ onNext, onBack }: Step3HowItWorksProps) {
         <Button
           type="button"
           onClick={onNext}
-          className="flex-1 min-h-[44px] text-base font-semibold"
+          className="flex-1 min-h-[44px] text-base font-semibold glow-red"
         >
           Next
         </Button>
