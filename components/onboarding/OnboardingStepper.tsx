@@ -9,7 +9,8 @@ import { Step2Delivery } from './steps/Step2Delivery'
 import { Step3HowItWorks } from './steps/Step3HowItWorks'
 import { Step4ROI } from './steps/Step4ROI'
 import { Step5BestPractices } from './steps/Step5BestPractices'
-import { Button } from '@/components/ui/button'
+import { Step6Policy } from './steps/Step6Policy'
+import { Step7Confirm } from './steps/Step7Confirm'
 
 interface OnboardingStepperProps {
   broker: Broker
@@ -99,21 +100,16 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
           {currentStep === 5 && (
             <Step5BestPractices onNext={() => handleNext()} onBack={handleBack} />
           )}
-          {/* Steps 6-7: placeholder — will be added in Plan 04 */}
-          {currentStep >= 6 && currentStep <= 7 && (
-            <div className="py-12 text-center text-muted-foreground">
-              Step {currentStep} — coming soon
-              <div className="mt-4 flex gap-2 justify-center">
-                <Button variant="secondary" onClick={handleBack}>
-                  Back
-                </Button>
-                {currentStep < 7 ? (
-                  <Button onClick={() => handleNext()}>Next</Button>
-                ) : (
-                  <Button onClick={() => handleComplete()}>Complete</Button>
-                )}
-              </div>
-            </div>
+          {currentStep === 6 && (
+            <Step6Policy onNext={() => handleNext()} onBack={handleBack} />
+          )}
+          {currentStep === 7 && (
+            <Step7Confirm
+              broker={broker}
+              formData={formData}
+              onComplete={handleComplete}
+              onBack={handleBack}
+            />
           )}
         </StepTransition>
       </main>
