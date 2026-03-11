@@ -81,7 +81,7 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
   }, [token, formData])
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <OnboardingHeader currentStep={currentStep} totalSteps={7} />
       <main className="max-w-lg mx-auto px-4 pb-24">
         <StepTransition stepKey={currentStep}>

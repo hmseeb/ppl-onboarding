@@ -22,7 +22,7 @@ export default async function CompletePage({
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
+    <div className="min-h-dvh bg-background text-foreground flex items-center justify-center px-4">
       <Card className="max-w-lg w-full">
         <CardContent className="pt-8 pb-8 text-center space-y-6">
           <h1 className="text-2xl font-bold">You&apos;re Already Onboarded</h1>
