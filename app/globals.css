@@ -86,6 +86,41 @@
   --sidebar-ring: #1A7F5A;
 }
 
+.dark {
+  --background: #141413;
+  --foreground: #E8E8E3;
+  --card: #1C1C1A;
+  --card-foreground: #E8E8E3;
+  --popover: #1C1C1A;
+  --popover-foreground: #E8E8E3;
+  --primary: #2EAE7A;
+  --primary-foreground: #0A0A09;
+  --secondary: #262623;
+  --secondary-foreground: #E8E8E3;
+  --muted: #262623;
+  --muted-foreground: #9A9A92;
+  --accent: #262623;
+  --accent-foreground: #E8E8E3;
+  --destructive: #E06060;
+  --destructive-foreground: #0A0A09;
+  --border: #333330;
+  --input: #222220;
+  --ring: #2EAE7A;
+  --chart-1: oklch(0.65 0.14 155);
+  --chart-2: oklch(0.60 0.12 145);
+  --chart-3: oklch(0.55 0.10 135);
+  --chart-4: oklch(0.50 0.08 125);
+  --chart-5: oklch(0.45 0.06 115);
+  --sidebar: #1C1C1A;
+  --sidebar-foreground: #E8E8E3;
+  --sidebar-primary: #2EAE7A;
+  --sidebar-primary-foreground: #0A0A09;
+  --sidebar-accent: #262623;
+  --sidebar-accent-foreground: #E8E8E3;
+  --sidebar-border: #333330;
+  --sidebar-ring: #2EAE7A;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -129,6 +164,12 @@
   background:
     radial-gradient(ellipse 80% 60% at 50% -8%, rgba(26, 127, 90, 0.04) 0%, transparent 55%),
     radial-gradient(ellipse 50% 40% at 85% 15%, rgba(26, 127, 90, 0.02) 0%, transparent 50%),
+    var(--background);
+}
+.dark .onboarding-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -8%, rgba(46, 174, 122, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 85% 15%, rgba(46, 174, 122, 0.03) 0%, transparent 50%),
     var(--background);
 }
 

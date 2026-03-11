@@ -4,7 +4,7 @@ import { useState } from 'react'
 import type { Broker, BrokerStatus } from '@/lib/types'
 import { Badge } from '@/components/ui/badge'
 import { CopyLinkButton } from '@/components/admin/CopyLinkButton'
-import { ChevronDown, Phone, Mail, Globe, Clock, Pause } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight, Phone, Mail, Globe, Clock, Pause, Loader2 } from 'lucide-react'
 
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return '\u2014'
@@ -33,7 +33,7 @@ function StatusBadge({ status }: { status: BrokerStatus }) {
       return <Badge variant="secondary" className="bg-muted text-muted-foreground text-[11px]">Not Started</Badge>
     case 'in_progress':
       return (
-        <Badge variant="outline" className="text-blue-600 border-blue-300 text-[11px]">
+        <Badge variant="secondary" className="text-blue-600 border-0 text-[11px]">
           In Progress
         </Badge>
       )
@@ -182,8 +182,37 @@ function BrokerCard({ broker }: { broker: Broker }) {
   )
 }
 
-export function BrokerTable({ brokers }: { brokers: Broker[] }) {
-  if (brokers.length === 0) {
+interface BrokerTableProps {
+  initialBrokers: Broker[]
+  initialTotal: number
+  pageSize: number
+}
+
+export function BrokerTable({ initialBrokers, initialTotal, pageSize }: BrokerTableProps) {
+  const [brokers, setBrokers] = useState<Broker[]>(initialBrokers)
+  const [total, setTotal] = useState(initialTotal)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [loading, setLoading] = useState(false)
+
+  const totalPages = Math.max(1, Math.ceil(total / pageSize))
+
+  async function fetchPage(page: number) {
+    setLoading(true)
+    try {
+      const res = await fetch(`/api/admin/brokers?page=${page}&pageSize=${pageSize}`)
+      if (!res.ok) throw new Error('Failed to fetch brokers')
+      const data = await res.json()
+      setBrokers(data.brokers)
+      setTotal(data.total)
+      setCurrentPage(data.page)
+    } catch (err) {
+      console.error('Error fetching brokers:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (total === 0 && !loading) {
     return (
       <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-card py-16">
         <p className="text-muted-foreground">
@@ -194,10 +223,46 @@ export function BrokerTable({ brokers }: { brokers: Broker[] }) {
   }
 
   return (
-    <div className="space-y-2">
-      {brokers.map((broker) => (
-        <BrokerCard key={broker.id} broker={broker} />
-      ))}
+    <div className="space-y-4">
+      {/* Broker cards */}
+      <div className="space-y-2 relative">
+        {loading && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/60 rounded-lg">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          </div>
+        )}
+        {brokers.map((broker) => (
+          <BrokerCard key={broker.id} broker={broker} />
+        ))}
+      </div>
+
+      {/* Pagination controls */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
+          <button
+            onClick={() => fetchPage(currentPage - 1)}
+            disabled={currentPage <= 1 || loading}
+            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:border-primary/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:border-border"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            Previous
+          </button>
+
+          <span className="text-sm text-muted-foreground">
+            Page <span className="font-medium text-foreground">{currentPage}</span> of{' '}
+            <span className="font-medium text-foreground">{totalPages}</span>
+          </span>
+
+          <button
+            onClick={() => fetchPage(currentPage + 1)}
+            disabled={currentPage >= totalPages || loading}
+            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:border-primary/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:border-border"
+          >
+            Next
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
     </div>
   )
 }

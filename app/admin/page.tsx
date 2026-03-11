@@ -5,6 +5,8 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { BrokerTable } from '@/components/admin/BrokerTable'
 import type { Broker } from '@/lib/types'
 
+const PAGE_SIZE = 10
+
 export default async function AdminPage() {
   // Defense-in-depth: verify cookie server-side even if proxy.ts is bypassed (CVE-2025-29927)
   const cookieStore = await cookies()
@@ -14,12 +16,25 @@ export default async function AdminPage() {
     redirect('/admin/login')
   }
 
-  // Fetch all brokers sorted by most recent first
   const supabase = createServiceClient()
+
+  // Fetch total count
+  const { count, error: countError } = await supabase
+    .from('brokers')
+    .select('*', { count: 'exact', head: true })
+
+  if (countError) {
+    console.error('Failed to fetch broker count:', countError)
+  }
+
+  const total = count ?? 0
+
+  // Fetch first page of brokers
   const { data: brokers, error } = await supabase
     .from('brokers')
     .select('*')
     .order('created_at', { ascending: false })
+    .range(0, PAGE_SIZE - 1)
 
   if (error) {
     console.error('Failed to fetch brokers:', error)
@@ -37,13 +52,13 @@ export default async function AdminPage() {
               Broker Dashboard
             </h1>
             <p className="mt-1 text-muted-foreground">
-              <span className="font-display text-2xl text-primary italic">{brokerList.length}</span>{' '}
-              broker{brokerList.length !== 1 ? 's' : ''}
+              <span className="font-display text-2xl text-primary italic">{total}</span>{' '}
+              broker{total !== 1 ? 's' : ''}
             </p>
           </div>
           <LogoutButton />
         </div>
-        <BrokerTable brokers={brokerList} />
+        <BrokerTable initialBrokers={brokerList} initialTotal={total} pageSize={PAGE_SIZE} />
       </div>
     </div>
   )
