@@ -19,11 +19,13 @@ CREATE TABLE brokers (
   deal_amount     numeric NOT NULL,
 
   -- Broker-supplied during onboarding (populated in Phase 2)
-  delivery_method text,
+  delivery_methods text[],
   delivery_email  text,
   delivery_phone  text,
   crm_webhook_url text,
   contact_hours   text,
+  custom_hours_start text,
+  custom_hours_end   text,
   weekend_pause   boolean DEFAULT false,
 
   -- Step persistence (populated in Phase 2)

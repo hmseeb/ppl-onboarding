@@ -14,11 +14,13 @@ export interface Broker {
   secondary_vertical: string | null
   batch_size: number
   deal_amount: number
-  delivery_method: string | null
+  delivery_methods: string[] | null
   delivery_email: string | null
   delivery_phone: string | null
   crm_webhook_url: string | null
   contact_hours: string | null
+  custom_hours_start: string | null
+  custom_hours_end: string | null
   weekend_pause: boolean
   current_step: number
   step_data: Record<string, unknown> | null

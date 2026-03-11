@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { DeliveryPrefsSchema, type DeliveryPrefs } from '@/lib/validations/delivery'
+import { DeliveryPrefsSchema, type DeliveryPrefs, type DeliveryMethod } from '@/lib/validations/delivery'
 import { Broker } from '@/lib/types'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -15,10 +15,10 @@ interface Step2DeliveryProps {
   onBack: () => void
 }
 
-const deliveryMethods = [
-  { value: 'sms' as const, label: 'SMS' },
-  { value: 'email' as const, label: 'Email' },
-  { value: 'crm_webhook' as const, label: 'CRM Webhook' },
+const deliveryMethods: { value: DeliveryMethod; label: string; description: string }[] = [
+  { value: 'sms', label: 'SMS', description: 'Get referrals texted to your phone' },
+  { value: 'email', label: 'Email', description: 'Get referrals delivered to your inbox' },
+  { value: 'crm_webhook', label: 'CRM Webhook', description: 'Push referrals directly into your CRM' },
 ]
 
 const contactHoursOptions = [
@@ -28,6 +28,10 @@ const contactHoursOptions = [
 ]
 
 export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
+  const defaultMethods: DeliveryMethod[] = broker.delivery_methods?.length
+    ? (broker.delivery_methods as DeliveryMethod[])
+    : ['sms']
+
   const {
     register,
     handleSubmit,
@@ -37,17 +41,28 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   } = useForm<DeliveryPrefs>({
     resolver: zodResolver(DeliveryPrefsSchema),
     defaultValues: {
-      delivery_method: (broker.delivery_method as DeliveryPrefs['delivery_method']) ?? 'sms',
+      delivery_methods: defaultMethods,
       delivery_email: broker.delivery_email ?? broker.email ?? '',
       delivery_phone: broker.delivery_phone ?? broker.phone ?? '',
       crm_webhook_url: broker.crm_webhook_url ?? '',
       contact_hours: (broker.contact_hours as DeliveryPrefs['contact_hours']) ?? 'business_hours',
+      custom_hours_start: broker.custom_hours_start ?? '',
+      custom_hours_end: broker.custom_hours_end ?? '',
       weekend_pause: broker.weekend_pause ?? false,
     },
   })
 
-  const selectedMethod = watch('delivery_method')
+  const selectedMethods = watch('delivery_methods')
+  const contactHours = watch('contact_hours')
   const weekendPause = watch('weekend_pause')
+
+  const toggleMethod = (method: DeliveryMethod) => {
+    const current = selectedMethods ?? []
+    const updated = current.includes(method)
+      ? current.filter((m) => m !== method)
+      : [...current, method]
+    setValue('delivery_methods', updated as [DeliveryMethod, ...DeliveryMethod[]], { shouldValidate: true })
+  }
 
   const onSubmit = (data: DeliveryPrefs) => {
     onNext(data as unknown as Record<string, unknown>)
@@ -59,49 +74,60 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
         <h1 className="text-3xl font-bold tracking-tight">
           How do you want to receive referrals, {broker.first_name}?
         </h1>
+        <p className="text-sm text-muted-foreground">Select all that apply — we&apos;ll blast every channel you pick.</p>
       </div>
 
-      {/* Delivery Method - Radio Buttons */}
+      {/* Delivery Methods - Checkboxes (multi-select) */}
       <Card className="border-border/50">
         <CardContent className="pt-6 space-y-3">
-          <Label className="text-sm font-heading uppercase tracking-wider">Delivery Method</Label>
+          <Label className="text-sm font-heading uppercase tracking-wider">Delivery Methods</Label>
           <div className="space-y-2">
-            {deliveryMethods.map((method) => (
-              <label
-                key={method.value}
-                className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors min-h-[44px] ${
-                  selectedMethod === method.value
-                    ? 'border-primary bg-primary/10 glow-red-sm'
-                    : 'border-border hover:border-muted-foreground/30'
-                }`}
-              >
-                <input
-                  type="radio"
-                  value={method.value}
-                  checked={selectedMethod === method.value}
-                  onChange={() => setValue('delivery_method', method.value)}
-                  className="sr-only"
-                />
-                <div
-                  className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                    selectedMethod === method.value
-                      ? 'border-primary'
-                      : 'border-muted-foreground/50'
+            {deliveryMethods.map((method) => {
+              const isSelected = selectedMethods?.includes(method.value)
+              return (
+                <label
+                  key={method.value}
+                  className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors min-h-[44px] ${
+                    isSelected
+                      ? 'border-primary bg-primary/10 glow-red-sm'
+                      : 'border-border hover:border-muted-foreground/30'
                   }`}
                 >
-                  {selectedMethod === method.value && (
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                  )}
-                </div>
-                <span className="font-medium">{method.label}</span>
-              </label>
-            ))}
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={() => toggleMethod(method.value)}
+                    className="sr-only"
+                  />
+                  <div
+                    className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                      isSelected
+                        ? 'border-primary bg-primary'
+                        : 'border-muted-foreground/50'
+                    }`}
+                  >
+                    {isSelected && (
+                      <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                  <div>
+                    <span className="font-medium">{method.label}</span>
+                    <p className="text-xs text-muted-foreground">{method.description}</p>
+                  </div>
+                </label>
+              )
+            })}
           </div>
+          {errors.delivery_methods && (
+            <p className="text-xs text-destructive">{errors.delivery_methods.message}</p>
+          )}
 
-          {/* Conditional fields based on selected delivery method */}
-          {selectedMethod === 'sms' && (
+          {/* Conditional fields — shown for each selected method */}
+          {selectedMethods?.includes('sms') && (
             <div className="space-y-1 pt-2">
-              <Label htmlFor="delivery_phone">Phone Number</Label>
+              <Label htmlFor="delivery_phone">Phone Number for SMS</Label>
               <Input
                 id="delivery_phone"
                 type="tel"
@@ -115,7 +141,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
             </div>
           )}
 
-          {selectedMethod === 'email' && (
+          {selectedMethods?.includes('email') && (
             <div className="space-y-1 pt-2">
               <Label htmlFor="delivery_email">Email Address</Label>
               <Input
@@ -131,7 +157,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
             </div>
           )}
 
-          {selectedMethod === 'crm_webhook' && (
+          {selectedMethods?.includes('crm_webhook') && (
             <div className="space-y-1 pt-2">
               <Label htmlFor="crm_webhook_url">Webhook URL</Label>
               <Input
@@ -166,6 +192,33 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
               </option>
             ))}
           </select>
+
+          {/* Custom time window inputs */}
+          {contactHours === 'custom' && (
+            <div className="flex gap-3 pt-2">
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="custom_hours_start">From</Label>
+                <Input
+                  id="custom_hours_start"
+                  type="time"
+                  {...register('custom_hours_start')}
+                  className="min-h-[44px]"
+                />
+              </div>
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="custom_hours_end">To</Label>
+                <Input
+                  id="custom_hours_end"
+                  type="time"
+                  {...register('custom_hours_end')}
+                  className="min-h-[44px]"
+                />
+              </div>
+            </div>
+          )}
+          {errors.custom_hours_start && (
+            <p className="text-xs text-destructive">{errors.custom_hours_start.message}</p>
+          )}
         </CardContent>
       </Card>
 

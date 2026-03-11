@@ -22,11 +22,13 @@ export async function POST(
       email: formData.email,
       phone: formData.phone,
       company_name: formData.company_name,
-      delivery_method: formData.delivery_method,
+      delivery_methods: formData.delivery_methods,
       delivery_email: formData.delivery_email,
       delivery_phone: formData.delivery_phone,
       crm_webhook_url: formData.crm_webhook_url,
       contact_hours: formData.contact_hours,
+      custom_hours_start: formData.custom_hours_start || null,
+      custom_hours_end: formData.custom_hours_end || null,
       weekend_pause: formData.weekend_pause,
     })
     .eq('token', token)

@@ -12,30 +12,34 @@ interface Step7ConfirmProps {
   formData: Record<string, unknown>
 }
 
-function getDeliveryDisplay(method: string | null | undefined): string {
-  switch (method) {
-    case 'sms':
-      return 'texts'
-    case 'email':
-      return 'email'
-    case 'crm_webhook':
-      return 'CRM'
-    default:
-      return 'texts'
-  }
+const methodDisplayMap: Record<string, string> = {
+  sms: 'texts',
+  email: 'email',
+  crm_webhook: 'CRM',
 }
 
-function getDeliveryLabel(method: string | null | undefined): string {
-  switch (method) {
-    case 'sms':
-      return 'SMS'
-    case 'email':
-      return 'Email'
-    case 'crm_webhook':
-      return 'CRM Webhook'
-    default:
-      return 'SMS'
-  }
+const methodLabelMap: Record<string, string> = {
+  sms: 'SMS',
+  email: 'Email',
+  crm_webhook: 'CRM Webhook',
+}
+
+function getDeliveryDisplay(methods: string[] | string | null | undefined): string {
+  const arr = normalizeMethodsArray(methods)
+  if (arr.length === 0) return 'texts'
+  return arr.map((m) => methodDisplayMap[m] ?? m).join(' + ')
+}
+
+function getDeliveryLabels(methods: string[] | string | null | undefined): string[] {
+  const arr = normalizeMethodsArray(methods)
+  if (arr.length === 0) return ['SMS']
+  return arr.map((m) => methodLabelMap[m] ?? m)
+}
+
+function normalizeMethodsArray(methods: string[] | string | null | undefined): string[] {
+  if (!methods) return []
+  if (Array.isArray(methods)) return methods
+  return [methods]
 }
 
 export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
@@ -44,7 +48,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
   const company = (formData.company_name as string) ?? broker.company_name
   const email = (formData.email as string) ?? broker.email
   const phone = (formData.phone as string) ?? broker.phone
-  const deliveryMethod = (formData.delivery_method as string) ?? broker.delivery_method
+  const deliveryMethods = (formData.delivery_methods as string[]) ?? broker.delivery_methods
 
   return (
     <div className="py-10 space-y-6">
@@ -90,8 +94,12 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
           <Separator className="my-1" />
 
           <div>
-            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Delivery Method</p>
-            <p className="text-base font-medium">{getDeliveryLabel(deliveryMethod)}</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Delivery Methods</p>
+            <div className="flex flex-wrap gap-1.5 mt-1">
+              {getDeliveryLabels(deliveryMethods).map((label) => (
+                <Badge key={label} variant="secondary">{label}</Badge>
+              ))}
+            </div>
           </div>
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Batch Size</p>
@@ -107,7 +115,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
         <CardContent className="p-4">
           <p className="text-sm text-muted-foreground text-center">
             Your <span className="font-display text-2xl text-primary">{broker.batch_size}</span> referrals are on the way. Watch your{' '}
-            <span className="font-bold text-foreground">{getDeliveryDisplay(deliveryMethod)}</span> — and remember, speed to lead wins.
+            <span className="font-bold text-foreground">{getDeliveryDisplay(deliveryMethods)}</span> — and remember, speed to lead wins.
           </p>
         </CardContent>
       </Card>
