@@ -60,7 +60,7 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
           {broker.first_name}, let&apos;s get you live.
         </h1>
         <p className="text-muted-foreground leading-relaxed">
-          You&apos;re locked in with <span className="font-heading text-2xl text-primary italic">{broker.batch_size}</span> exclusive referrals. Let&apos;s get
+          You&apos;re locked in with <span className="text-primary font-bold">{broker.batch_size}</span> exclusive referrals. Let&apos;s get
           you set up so they start hitting your phone.
         </p>
       </div>

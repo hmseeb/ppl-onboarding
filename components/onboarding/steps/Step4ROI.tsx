@@ -60,7 +60,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
             {' '}That means if you buy {formatNumber(broker.batch_size)} referrals, you should expect
             to fund <span className="text-primary font-bold">{roi.closedAt5Pct}-{Math.max(roi.closedAt15Pct, 1)}</span> deals. At ${formatNumber(Math.round(roi.pricePerReferral))} per
             referral, that&apos;s a cost of ${formatNumber(Math.round(broker.deal_amount / Math.max(roi.closedAt15Pct, 1)))}-${formatNumber(Math.round(broker.deal_amount / roi.closedAt5Pct))} per
-            funded deal — and if your average commission is <span className="font-heading text-xl text-primary italic">$3,000-$5,000</span>+, the math works fast.
+            funded deal — and if your average commission is <span className="text-primary font-semibold">$3,000-$5,000</span>+, the math works fast.
           </>) : null}
         </p>
       </div>
@@ -68,43 +68,50 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
       {/* ROI Visual */}
       {roi ? (
         <Card className="glass border-primary/20 accent-glow shimmer-gold shadow-sm animate-fadeSlideIn delay-3">
-          <CardContent className="py-6 px-5 space-y-4">
-            <div className="text-center space-y-2">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground font-heading">Your Investment</p>
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                <span className="font-heading text-5xl text-primary italic">
-                  {formatNumber(broker.batch_size)}
-                </span>
-                <span className="text-sm text-muted-foreground">referrals</span>
-                <span className="text-lg text-muted-foreground">x</span>
-                <span className="font-heading text-5xl text-primary italic">
-                  ${formatNumber(Math.round(roi.pricePerReferral))}
-                </span>
-                <span className="text-lg text-muted-foreground">=</span>
-                <span className="font-heading text-5xl text-primary italic">
-                  ${formatNumber(broker.deal_amount)}
-                </span>
+          <CardContent className="py-6 px-5 space-y-5">
+            {/* Investment breakdown */}
+            <div className="text-center space-y-3">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-primary/60 font-heading">Your Investment</p>
+              <div className="grid grid-cols-3 items-end gap-1">
+                <div>
+                  <p className="text-3xl font-bold text-primary tabular-nums">{formatNumber(broker.batch_size)}</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">referrals</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-primary tabular-nums">${formatNumber(Math.round(roi.pricePerReferral))}</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">per referral</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-primary tabular-nums">${formatNumber(broker.deal_amount)}</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">total</p>
+                </div>
               </div>
             </div>
 
             <Separator />
 
-            <div className="text-center space-y-2">
-              <p className="text-sm text-muted-foreground">
-                At 5% close rate = <span className="text-primary font-bold">{roi.closedAt5Pct}</span> funded deal{roi.closedAt5Pct !== 1 ? 's' : ''}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Average commission = <span className="font-heading text-xl text-primary italic">$3,000-$5,000</span>
-              </p>
+            {/* Close rate stats */}
+            <div className="flex justify-center gap-8 text-center">
+              <div>
+                <p className="text-2xl font-bold text-foreground tabular-nums">{roi.closedAt5Pct}</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">funded deals</p>
+                <p className="text-[10px] text-muted-foreground">at 5% close</p>
+              </div>
+              <div className="w-px bg-border self-stretch" />
+              <div>
+                <p className="text-2xl font-bold text-foreground tabular-nums">$3k-$5k</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">avg commission</p>
+                <p className="text-[10px] text-muted-foreground">per deal</p>
+              </div>
             </div>
 
             <Separator />
 
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-1">ROI on your first batch</p>
-              <p className="font-heading text-6xl text-primary italic">
-                {((roi.closedAt5Pct * 3000) / broker.deal_amount).toFixed(1)}x -{' '}
-                {((Math.max(roi.closedAt15Pct, 1) * 5000) / broker.deal_amount).toFixed(1)}x
+            {/* ROI multiplier */}
+            <div className="text-center space-y-1">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-primary/60 font-heading">ROI on your first batch</p>
+              <p className="text-5xl font-bold text-primary tabular-nums tracking-tight">
+                {((roi.closedAt5Pct * 3000) / broker.deal_amount).toFixed(1)}x – {((Math.max(roi.closedAt15Pct, 1) * 5000) / broker.deal_amount).toFixed(1)}x
               </p>
             </div>
           </CardContent>
@@ -145,7 +152,7 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
         </h2>
         <p className="text-sm text-muted-foreground">
           Don&apos;t judge the network off 2 or 3 referrals. Give it a real sample — work all{' '}
-          <span className="font-heading text-xl text-primary italic">{broker.batch_size}</span> properly, and then evaluate. Every experienced broker knows that
+          <span className="text-primary font-bold">{broker.batch_size}</span> properly, and then evaluate. Every experienced broker knows that
           closing is about volume and consistency.
         </p>
       </div>

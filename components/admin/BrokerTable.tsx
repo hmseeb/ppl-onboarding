@@ -144,7 +144,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
                 label="Batch"
                 value={
                   <span>
-                    <span className="text-primary font-display italic">{broker.batch_size}</span> referrals · ${Number(broker.deal_amount).toLocaleString()} (${pricePerLead}/lead)
+                    <span className="text-primary font-bold">{broker.batch_size}</span> referrals · ${Number(broker.deal_amount).toLocaleString()} (${pricePerLead}/lead)
                   </span>
                 }
               />

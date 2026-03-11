@@ -107,7 +107,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Batch Size</p>
             <p className="font-medium">
-              <span className="font-heading text-2xl text-primary italic">{broker.batch_size}</span>{' '}
+              <span className="text-xl text-primary font-bold">{broker.batch_size}</span>{' '}
               referrals
             </p>
           </div>
@@ -117,7 +117,7 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
       <Card className="glass border-primary/20 bg-primary/5 animate-fadeSlideIn delay-2">
         <CardContent className="p-4">
           <p className="text-sm text-muted-foreground text-center">
-            Your <span className="font-heading text-2xl text-primary italic">{broker.batch_size}</span> referrals are on the way. Watch your{' '}
+            Your <span className="text-xl text-primary font-bold">{broker.batch_size}</span> referrals are on the way. Watch your{' '}
             <span className="font-bold text-foreground">{getDeliveryDisplay(deliveryMethods)}</span> — and remember, speed to lead wins.
           </p>
         </CardContent>
