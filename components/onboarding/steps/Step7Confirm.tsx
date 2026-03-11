@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Broker } from '@/lib/types'
 import { formatPhone } from '@/lib/utils/normalize'
 import { Button } from '@/components/ui/button'
@@ -11,8 +10,6 @@ import { Separator } from '@/components/ui/separator'
 interface Step7ConfirmProps {
   broker: Broker
   formData: Record<string, unknown>
-  onComplete: () => Promise<void>
-  onBack: () => void
 }
 
 function getDeliveryDisplay(method: string | null | undefined): string {
@@ -41,21 +38,13 @@ function getDeliveryLabel(method: string | null | undefined): string {
   }
 }
 
-export function Step7Confirm({ broker, formData, onComplete, onBack }: Step7ConfirmProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
+export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
   const firstName = (formData.first_name as string) ?? broker.first_name
   const lastName = (formData.last_name as string) ?? broker.last_name
   const company = (formData.company_name as string) ?? broker.company_name
   const email = (formData.email as string) ?? broker.email
   const phone = (formData.phone as string) ?? broker.phone
   const deliveryMethod = (formData.delivery_method as string) ?? broker.delivery_method
-
-  const handleClick = async () => {
-    setIsSubmitting(true)
-    await onComplete()
-    window.location.href = 'https://badaaas.com'
-  }
 
   return (
     <div className="py-10 space-y-6">
@@ -123,32 +112,20 @@ export function Step7Confirm({ broker, formData, onComplete, onBack }: Step7Conf
         </CardContent>
       </Card>
 
-      {/* Primary CTA */}
-      <Button
-        onClick={handleClick}
-        disabled={isSubmitting}
-        className="w-full min-h-[44px] text-lg font-bold glow-red-lg"
-      >
-        {isSubmitting ? 'Completing...' : 'Go to Dashboard'}
-      </Button>
+      {/* Dashboard link — no API call, just a redirect */}
+      <a href="https://badaaas.com" className="block">
+        <Button className="w-full min-h-[44px] text-lg font-bold glow-red-lg">
+          Go to Dashboard
+        </Button>
+      </a>
 
-      {/* Secondary link */}
+      {/* Contact */}
       <p className="text-sm text-muted-foreground text-center">
         Questions? Text Daniel at{' '}
         <a href="sms:+17024129233" className="text-primary hover:text-primary/80 underline">
           +1 (702) 412-9233
         </a>
       </p>
-
-      {/* Back button */}
-      <Button
-        type="button"
-        variant="ghost"
-        onClick={onBack}
-        className="w-full min-h-[44px] text-muted-foreground/60"
-      >
-        Back
-      </Button>
     </div>
   )
 }

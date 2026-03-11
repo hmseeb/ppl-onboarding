@@ -52,16 +52,31 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
     [token]
   )
 
+  // Complete fires when broker accepts the policy (step 6 → 7 transition)
+  const handleComplete = useCallback(() => {
+    fetch(`/api/brokers/${token}/complete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formData }),
+    }).catch(() => {
+      console.error('Completion failed')
+    })
+  }, [token, formData])
+
   const handleNext = useCallback(
     (stepData?: Record<string, unknown>) => {
       if (stepData) {
         setFormData((prev) => ({ ...prev, ...stepData }))
       }
       if (currentStep < 7) {
+        // Fire completion when leaving step 6 (policy acceptance = the handshake)
+        if (currentStep === 6) {
+          handleComplete()
+        }
         goToStep(currentStep + 1)
       }
     },
-    [currentStep, goToStep]
+    [currentStep, goToStep, handleComplete]
   )
 
   const handleBack = useCallback(() => {
@@ -69,17 +84,6 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
       goToStep(currentStep - 1)
     }
   }, [currentStep, goToStep])
-
-  const handleComplete = useCallback(async (): Promise<void> => {
-    const response = await fetch(`/api/brokers/${token}/complete`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ formData }),
-    })
-    if (!response.ok) {
-      console.error('Completion failed:', response.status)
-    }
-  }, [token, formData])
 
   return (
     <div className="min-h-dvh bg-background text-foreground onboarding-bg">
@@ -108,8 +112,6 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
             <Step7Confirm
               broker={broker}
               formData={formData}
-              onComplete={handleComplete}
-              onBack={handleBack}
             />
           )}
         </StepTransition>
