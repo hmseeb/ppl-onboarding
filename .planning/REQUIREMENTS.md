@@ -134,10 +134,10 @@ Deferred to future release. Tracked but not in current roadmap.
 | INFR-04 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 34 total
-- Mapped to phases: 34
-- Unmapped: 0 ✓
+- v1 requirements: 35 total
+- Mapped to phases: 35
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-11*
-*Last updated: 2026-03-11 after initial definition*
+*Last updated: 2026-03-11 after roadmap creation*
