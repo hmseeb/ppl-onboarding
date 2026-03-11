@@ -39,6 +39,7 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
   const goToStep = useCallback(
     (step: number) => {
       setCurrentStep(step)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       // Fire-and-forget step persistence
       fetch(`/api/brokers/${token}/step`, {
         method: 'PATCH',
