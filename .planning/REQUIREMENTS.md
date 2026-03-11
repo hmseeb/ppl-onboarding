@@ -18,10 +18,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Onboarding Flow
 
-- [ ] **ONBD-01**: Personalized onboarding URL (/onboard/[token]) loads broker data server-side and renders pre-filled experience
-- [ ] **ONBD-02**: Progress bar at top shows current step (1-7) throughout entire flow
-- [ ] **ONBD-03**: Step 1 (Welcome) displays personalized headline with first_name, pre-filled summary card (name, company, email, phone, verticals, batch size), and inline editing on all pre-filled fields
-- [ ] **ONBD-04**: Step 2 (Delivery Preferences) allows selecting SMS, email, CRM webhook (with URL field shown conditionally), preferred hours dropdown, and weekend pause toggle
+- [x] **ONBD-01**: Personalized onboarding URL (/onboard/[token]) loads broker data server-side and renders pre-filled experience
+- [x] **ONBD-02**: Progress bar at top shows current step (1-7) throughout entire flow
+- [x] **ONBD-03**: Step 1 (Welcome) displays personalized headline with first_name, pre-filled summary card (name, company, email, phone, verticals, batch size), and inline editing on all pre-filled fields
+- [x] **ONBD-04**: Step 2 (Delivery Preferences) allows selecting SMS, email, CRM webhook (with URL field shown conditionally), preferred hours dropdown, and weekend pause toggle
 - [ ] **ONBD-05**: Step 3 (How Referrals Work) displays visual timeline/cards showing the 5-step referral process with callout box
 - [ ] **ONBD-06**: Step 4 (Setting Expectations) displays education sections with personalized ROI calculator using actual deal_amount/batch_size (dynamic price per referral, not hardcoded)
 - [ ] **ONBD-07**: Step 5 (Best Practices) displays 5 numbered cards with closing advice
@@ -34,8 +34,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Guard Pages
 
-- [ ] **GARD-01**: Visiting a completed onboarding link shows "You're already onboarded" screen with dashboard link (badaaas.com) and Daniel's contact info
-- [ ] **GARD-02**: Visiting an invalid/non-existent token shows clean error page with message and Daniel's contact info (+1 (702) 412-9233)
+- [x] **GARD-01**: Visiting a completed onboarding link shows "You're already onboarded" screen with dashboard link (badaaas.com) and Daniel's contact info
+- [x] **GARD-02**: Visiting an invalid/non-existent token shows clean error page with message and Daniel's contact info (+1 (702) 412-9233)
 
 ### Admin Panel
 
@@ -47,8 +47,8 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Design & UX
 
 - [x] **DSGN-01**: Dark theme with light text and red accent color for CTAs and key numbers
-- [ ] **DSGN-02**: Mobile-first responsive design with touch-friendly targets (min 44px)
-- [ ] **DSGN-03**: BadAAAS logo placeholder displayed at top of every onboarding screen
+- [x] **DSGN-02**: Mobile-first responsive design with touch-friendly targets (min 44px)
+- [x] **DSGN-03**: BadAAAS logo placeholder displayed at top of every onboarding screen
 - [ ] **DSGN-04**: Smooth transitions between steps with subtle animations
 - [ ] **DSGN-05**: All copy uses direct, confident, money-motivated tone — no corporate fluff
 - [ ] **DSGN-06**: ROI graphic on step 4 is visually impactful with personalized numbers that pop
@@ -103,10 +103,10 @@ Deferred to future release. Tracked but not in current roadmap.
 | HOOK-04 | Phase 1 | Complete |
 | HOOK-05 | Phase 1 | Complete |
 | HOOK-06 | Phase 1 | Complete |
-| ONBD-01 | Phase 2 | Pending |
-| ONBD-02 | Phase 2 | Pending |
-| ONBD-03 | Phase 2 | Pending |
-| ONBD-04 | Phase 2 | Pending |
+| ONBD-01 | Phase 2 | Complete |
+| ONBD-02 | Phase 2 | Complete |
+| ONBD-03 | Phase 2 | Complete |
+| ONBD-04 | Phase 2 | Complete |
 | ONBD-05 | Phase 2 | Pending |
 | ONBD-06 | Phase 2 | Pending |
 | ONBD-07 | Phase 2 | Pending |
@@ -116,15 +116,15 @@ Deferred to future release. Tracked but not in current roadmap.
 | ONBD-11 | Phase 2 | Complete |
 | ONBD-12 | Phase 2 | Complete |
 | ONBD-13 | Phase 2 | Complete |
-| GARD-01 | Phase 2 | Pending |
-| GARD-02 | Phase 2 | Pending |
+| GARD-01 | Phase 2 | Complete |
+| GARD-02 | Phase 2 | Complete |
 | ADMN-01 | Phase 3 | Pending |
 | ADMN-02 | Phase 3 | Pending |
 | ADMN-03 | Phase 3 | Pending |
 | ADMN-04 | Phase 3 | Pending |
 | DSGN-01 | Phase 2 | Complete |
-| DSGN-02 | Phase 2 | Pending |
-| DSGN-03 | Phase 2 | Pending |
+| DSGN-02 | Phase 2 | Complete |
+| DSGN-03 | Phase 2 | Complete |
 | DSGN-04 | Phase 4 | Pending |
 | DSGN-05 | Phase 2 | Pending |
 | DSGN-06 | Phase 2 | Pending |
