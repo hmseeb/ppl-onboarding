@@ -87,7 +87,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
               return (
                 <label
                   key={method.value}
-                  className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors min-h-[44px] ${
+                  className={`flex items-center gap-4 p-4 rounded-lg border cursor-pointer transition-colors min-h-[56px] ${
                     isSelected
                       ? 'border-primary bg-primary/10 glow-red-sm'
                       : 'border-border hover:border-muted-foreground/30'
@@ -100,14 +100,14 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
                     className="sr-only"
                   />
                   <div
-                    className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                    className={`w-7 h-7 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
                       isSelected
                         ? 'border-primary bg-primary'
                         : 'border-muted-foreground/50'
                     }`}
                   >
                     {isSelected && (
-                      <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <svg className="w-4 h-4 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     )}
