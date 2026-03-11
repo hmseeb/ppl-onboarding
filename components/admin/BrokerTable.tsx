@@ -17,6 +17,9 @@ function formatDate(dateStr: string | null): string {
 
 function formatTime(time: string | null): string {
   if (!time) return ''
+  // Already human-readable (e.g. "9:00 AM") — return as-is
+  if (time.includes('AM') || time.includes('PM')) return time
+  // Legacy 24h format (e.g. "09:00") — convert
   const [h, m] = time.split(':')
   const hour = parseInt(h, 10)
   const ampm = hour >= 12 ? 'PM' : 'AM'

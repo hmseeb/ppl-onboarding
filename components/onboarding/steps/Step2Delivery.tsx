@@ -22,10 +22,24 @@ const deliveryMethods: { value: DeliveryMethod; label: string; description: stri
 ]
 
 const contactHoursOptions = [
-  { value: 'business_hours' as const, label: 'Business hours only' },
+  { value: 'business_hours' as const, label: 'Business hours only (9 AM – 5 PM)' },
   { value: 'anytime' as const, label: 'Anytime' },
   { value: 'custom' as const, label: 'Custom time window' },
 ]
+
+const timeSlots = [
+  '6:00 AM', '6:30 AM', '7:00 AM', '7:30 AM',
+  '8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM',
+  '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+  '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM',
+  '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM',
+  '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM',
+  '6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM',
+  '8:00 PM', '8:30 PM', '9:00 PM', '9:30 PM',
+  '10:00 PM',
+]
+
+const selectClass = 'w-full min-h-[44px] rounded-lg border border-border/50 bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring'
 
 export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   const defaultMethods: DeliveryMethod[] = broker.delivery_methods?.length
@@ -184,7 +198,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
           <select
             id="contact_hours"
             {...register('contact_hours')}
-            className="w-full min-h-[44px] rounded-lg border border-border/50 bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className={selectClass}
           >
             {contactHoursOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -193,26 +207,34 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
             ))}
           </select>
 
-          {/* Custom time window inputs */}
+          {/* Custom time window selects */}
           {contactHours === 'custom' && (
             <div className="flex gap-3 pt-2">
               <div className="flex-1 space-y-1">
                 <Label htmlFor="custom_hours_start">From</Label>
-                <Input
+                <select
                   id="custom_hours_start"
-                  type="time"
                   {...register('custom_hours_start')}
-                  className="min-h-[44px]"
-                />
+                  className={selectClass}
+                >
+                  <option value="">Select start time</option>
+                  {timeSlots.map((slot) => (
+                    <option key={slot} value={slot}>{slot}</option>
+                  ))}
+                </select>
               </div>
               <div className="flex-1 space-y-1">
                 <Label htmlFor="custom_hours_end">To</Label>
-                <Input
+                <select
                   id="custom_hours_end"
-                  type="time"
                   {...register('custom_hours_end')}
-                  className="min-h-[44px]"
-                />
+                  className={selectClass}
+                >
+                  <option value="">Select end time</option>
+                  {timeSlots.map((slot) => (
+                    <option key={slot} value={slot}>{slot}</option>
+                  ))}
+                </select>
               </div>
             </div>
           )}
