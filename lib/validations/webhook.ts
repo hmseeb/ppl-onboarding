@@ -11,7 +11,7 @@ export const GHLWebhookSchema = z.object({
   ghl_contact_id: z.string().min(1),
   first_name: z.string().min(1),
   last_name: z.string().min(1),
-  email: z.string().email(),
+  email: z.email(),
   phone: z.string().optional().nullable(),
   company_name: z.string().optional().nullable(),
   state: z.string().optional().nullable(),
