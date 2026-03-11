@@ -47,9 +47,12 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
         <h2 className="text-lg font-semibold">Your Close Rate</h2>
         <p className="text-sm text-muted-foreground">
           Brokers on our network close between 5% and 15% depending on skill, speed, and
-          follow-up. That means if you buy 20 referrals, you should expect to fund 1-3 deals.
-          At $65 per referral, that&apos;s a cost of $650-$1,300 per funded deal — and if your
-          average commission is $3,000-$5,000+, the math works fast.
+          follow-up.{roi ? (<>
+            {' '}That means if you buy {formatNumber(broker.batch_size)} referrals, you should expect
+            to fund {roi.closedAt5Pct}-{Math.max(roi.closedAt15Pct, 1)} deals. At ${formatNumber(Math.round(roi.pricePerReferral))} per
+            referral, that&apos;s a cost of ${formatNumber(Math.round(broker.deal_amount / Math.max(roi.closedAt15Pct, 1)))}-${formatNumber(Math.round(broker.deal_amount / roi.closedAt5Pct))} per
+            funded deal — and if your average commission is $3,000-$5,000+, the math works fast.
+          </>) : null}
         </p>
       </div>
 
