@@ -22,11 +22,11 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **ONBD-02**: Progress bar at top shows current step (1-7) throughout entire flow
 - [x] **ONBD-03**: Step 1 (Welcome) displays personalized headline with first_name, pre-filled summary card (name, company, email, phone, verticals, batch size), and inline editing on all pre-filled fields
 - [x] **ONBD-04**: Step 2 (Delivery Preferences) allows selecting SMS, email, CRM webhook (with URL field shown conditionally), preferred hours dropdown, and weekend pause toggle
-- [ ] **ONBD-05**: Step 3 (How Referrals Work) displays visual timeline/cards showing the 5-step referral process with callout box
-- [ ] **ONBD-06**: Step 4 (Setting Expectations) displays education sections with personalized ROI calculator using actual deal_amount/batch_size (dynamic price per referral, not hardcoded)
-- [ ] **ONBD-07**: Step 5 (Best Practices) displays 5 numbered cards with closing advice
-- [ ] **ONBD-08**: Step 6 (Replacement Policy) displays guarantee policy with required checkbox acknowledgment that gates progression to step 7
-- [ ] **ONBD-09**: Step 7 (Confirmation) displays combined summary of webhook data + onboarding selections, CTA to badaaas.com, secondary link to text Daniel at +1 (702) 412-9233
+- [x] **ONBD-05**: Step 3 (How Referrals Work) displays visual timeline/cards showing the 5-step referral process with callout box
+- [x] **ONBD-06**: Step 4 (Setting Expectations) displays education sections with personalized ROI calculator using actual deal_amount/batch_size (dynamic price per referral, not hardcoded)
+- [x] **ONBD-07**: Step 5 (Best Practices) displays 5 numbered cards with closing advice
+- [x] **ONBD-08**: Step 6 (Replacement Policy) displays guarantee policy with required checkbox acknowledgment that gates progression to step 7
+- [x] **ONBD-09**: Step 7 (Confirmation) displays combined summary of webhook data + onboarding selections, CTA to badaaas.com, secondary link to text Daniel at +1 (702) 412-9233
 - [x] **ONBD-10**: On step 7 completion, broker status updates to "completed" in database with all delivery preferences and edits stored
 - [x] **ONBD-11**: On step 7 completion, completion webhook fires to configurable GHL URL with ghl_contact_id, onboarding_status, delivery_preferences, and updated_fields
 - [x] **ONBD-12**: Step 1 load updates broker status to "in_progress" in database
@@ -50,8 +50,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **DSGN-02**: Mobile-first responsive design with touch-friendly targets (min 44px)
 - [x] **DSGN-03**: BadAAAS logo placeholder displayed at top of every onboarding screen
 - [ ] **DSGN-04**: Smooth transitions between steps with subtle animations
-- [ ] **DSGN-05**: All copy uses direct, confident, money-motivated tone — no corporate fluff
-- [ ] **DSGN-06**: ROI graphic on step 4 is visually impactful with personalized numbers that pop
+- [x] **DSGN-05**: All copy uses direct, confident, money-motivated tone — no corporate fluff
+- [x] **DSGN-06**: ROI graphic on step 4 is visually impactful with personalized numbers that pop
 
 ### Infrastructure
 
@@ -107,11 +107,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | ONBD-02 | Phase 2 | Complete |
 | ONBD-03 | Phase 2 | Complete |
 | ONBD-04 | Phase 2 | Complete |
-| ONBD-05 | Phase 2 | Pending |
-| ONBD-06 | Phase 2 | Pending |
-| ONBD-07 | Phase 2 | Pending |
-| ONBD-08 | Phase 2 | Pending |
-| ONBD-09 | Phase 2 | Pending |
+| ONBD-05 | Phase 2 | Complete |
+| ONBD-06 | Phase 2 | Complete |
+| ONBD-07 | Phase 2 | Complete |
+| ONBD-08 | Phase 2 | Complete |
+| ONBD-09 | Phase 2 | Complete |
 | ONBD-10 | Phase 2 | Complete |
 | ONBD-11 | Phase 2 | Complete |
 | ONBD-12 | Phase 2 | Complete |
@@ -126,8 +126,8 @@ Deferred to future release. Tracked but not in current roadmap.
 | DSGN-02 | Phase 2 | Complete |
 | DSGN-03 | Phase 2 | Complete |
 | DSGN-04 | Phase 4 | Pending |
-| DSGN-05 | Phase 2 | Pending |
-| DSGN-06 | Phase 2 | Pending |
+| DSGN-05 | Phase 2 | Complete |
+| DSGN-06 | Phase 2 | Complete |
 | INFR-01 | Phase 1 | Complete |
 | INFR-02 | Phase 1 | Complete |
 | INFR-03 | Phase 1 | Complete |
