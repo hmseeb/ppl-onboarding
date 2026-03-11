@@ -62,7 +62,11 @@ Plans:
   1. Visiting /admin without the correct password is blocked — neither middleware spoofing nor direct page access bypasses the server-side check
   2. Daniel can see all brokers in a list with name, company, status (not_started/in_progress/completed), webhook received date, onboarding completed date, and delivery preferences
   3. Daniel can copy any broker's onboarding link to clipboard with one click
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Admin auth: proxy.ts middleware, login page, auth API, server-side verify helper
+- [ ] 03-02-PLAN.md — Admin dashboard: broker table with status, dates, preferences, copyable links
 
 ### Phase 4: Polish & Hardening
 **Goal**: The onboarding flow feels premium and works flawlessly on mobile — smooth step transitions, no iOS Safari keyboard overlap, and validation prevents advancing with incomplete data
@@ -82,5 +86,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 0/2 | Not started | - |
 | 2. Onboarding Flow | 0/5 | Not started | - |
-| 3. Admin Panel | 0/TBD | Not started | - |
+| 3. Admin Panel | 0/2 | Not started | - |
 | 4. Polish & Hardening | 0/TBD | Not started | - |
