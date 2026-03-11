@@ -29,7 +29,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. A malformed or incomplete webhook payload returns a 400 with error details — no partial record is written
   4. A GET to /api/brokers/[token] returns the broker's data and current onboarding status
   5. The Supabase project does not auto-pause: keepalive mechanism is active before first production webhook fires
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffolding, Supabase schema, and shared library layer
+- [ ] 01-02-PLAN.md — GHL webhook endpoint, broker token GET, and health keepalive
 
 ### Phase 2: Onboarding Flow
 **Goal**: A broker who clicks their unique onboarding link completes all 7 steps, selects delivery preferences, and triggers the GHL completion webhook — feeling recognized and ready to close deals
@@ -69,7 +73,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/2 | Not started | - |
 | 2. Onboarding Flow | 0/TBD | Not started | - |
 | 3. Admin Panel | 0/TBD | Not started | - |
 | 4. Polish & Hardening | 0/TBD | Not started | - |
