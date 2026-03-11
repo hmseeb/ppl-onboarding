@@ -6,6 +6,9 @@ import { OnboardingHeader } from './OnboardingHeader'
 import { StepTransition } from './StepTransition'
 import { Step1Welcome } from './steps/Step1Welcome'
 import { Step2Delivery } from './steps/Step2Delivery'
+import { Step3HowItWorks } from './steps/Step3HowItWorks'
+import { Step4ROI } from './steps/Step4ROI'
+import { Step5BestPractices } from './steps/Step5BestPractices'
 import { Button } from '@/components/ui/button'
 
 interface OnboardingStepperProps {
@@ -87,8 +90,17 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
           {currentStep === 2 && (
             <Step2Delivery broker={broker} onNext={handleNext} onBack={handleBack} />
           )}
-          {/* Steps 3-7: placeholder for now — will be added in Plans 03 and 04 */}
-          {currentStep >= 3 && currentStep <= 7 && (
+          {currentStep === 3 && (
+            <Step3HowItWorks onNext={() => handleNext()} onBack={handleBack} />
+          )}
+          {currentStep === 4 && (
+            <Step4ROI broker={broker} onNext={() => handleNext()} onBack={handleBack} />
+          )}
+          {currentStep === 5 && (
+            <Step5BestPractices onNext={() => handleNext()} onBack={handleBack} />
+          )}
+          {/* Steps 6-7: placeholder — will be added in Plan 04 */}
+          {currentStep >= 6 && currentStep <= 7 && (
             <div className="py-12 text-center text-muted-foreground">
               Step {currentStep} — coming soon
               <div className="mt-4 flex gap-2 justify-center">
