@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { GHLWebhookSchema } from '@/lib/validations/webhook'
 import { toTitleCase } from '@/lib/utils/normalize'
+import { generateBrokerSlug, randomSuffix } from '@/lib/utils/slug'
 
 export async function POST(request: NextRequest) {
   // Read raw body first (preserves raw body for future HMAC verification)
@@ -44,8 +45,23 @@ export async function POST(request: NextRequest) {
     })
   }
 
-  // New broker — insert fresh row with generated token
-  const newToken = crypto.randomUUID()
+  // Generate a human-readable slug from company name (or broker name fallback)
+  const baseSlug = generateBrokerSlug(
+    payload.company_name,
+    payload.first_name,
+    payload.last_name
+  )
+
+  // Check if slug already taken, append random suffix if so
+  const { data: slugExists } = await supabase
+    .from('brokers')
+    .select('token')
+    .eq('token', baseSlug)
+    .single()
+
+  const newToken = slugExists ? `${baseSlug}-${randomSuffix()}` : baseSlug
+
+  // New broker — insert fresh row with generated slug token
   const { data: broker, error } = await supabase
     .from('brokers')
     .insert({
