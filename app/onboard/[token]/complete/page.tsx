@@ -40,8 +40,8 @@ export default async function CompletePage({
           </a>
           <p className="text-sm text-muted-foreground">
             Questions? Text Daniel at{' '}
-            <a href="sms:+17024129233" className="text-primary underline">
-              +1 (702) 412-9233
+            <a href="sms:+14049394848" className="text-primary underline">
+              (404) 939-4848
             </a>
           </p>
         </CardContent>

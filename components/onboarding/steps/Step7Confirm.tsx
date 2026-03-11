@@ -122,8 +122,8 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
       {/* Contact */}
       <p className="text-sm text-muted-foreground text-center">
         Questions? Text Daniel at{' '}
-        <a href="sms:+17024129233" className="text-primary hover:text-primary/80 underline">
-          +1 (702) 412-9233
+        <a href="sms:+14049394848" className="text-primary hover:text-primary/80 underline">
+          (404) 939-4848
         </a>
       </p>
     </div>

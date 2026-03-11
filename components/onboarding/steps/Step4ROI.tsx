@@ -112,8 +112,8 @@ export function Step4ROI({ broker, onNext, onBack }: Step4ROIProps) {
             <p className="text-muted-foreground">
               Contact Daniel for your personalized ROI breakdown.
             </p>
-            <a href="sms:+17024129233" className="text-primary underline text-sm">
-              +1 (702) 412-9233
+            <a href="sms:+14049394848" className="text-primary underline text-sm">
+              (404) 939-4848
             </a>
           </CardContent>
         </Card>
