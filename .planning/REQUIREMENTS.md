@@ -27,10 +27,10 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **ONBD-07**: Step 5 (Best Practices) displays 5 numbered cards with closing advice
 - [ ] **ONBD-08**: Step 6 (Replacement Policy) displays guarantee policy with required checkbox acknowledgment that gates progression to step 7
 - [ ] **ONBD-09**: Step 7 (Confirmation) displays combined summary of webhook data + onboarding selections, CTA to badaaas.com, secondary link to text Daniel at +1 (702) 412-9233
-- [ ] **ONBD-10**: On step 7 completion, broker status updates to "completed" in database with all delivery preferences and edits stored
-- [ ] **ONBD-11**: On step 7 completion, completion webhook fires to configurable GHL URL with ghl_contact_id, onboarding_status, delivery_preferences, and updated_fields
-- [ ] **ONBD-12**: Step 1 load updates broker status to "in_progress" in database
-- [ ] **ONBD-13**: Current step is persisted to database so brokers can resume where they left off on page refresh
+- [x] **ONBD-10**: On step 7 completion, broker status updates to "completed" in database with all delivery preferences and edits stored
+- [x] **ONBD-11**: On step 7 completion, completion webhook fires to configurable GHL URL with ghl_contact_id, onboarding_status, delivery_preferences, and updated_fields
+- [x] **ONBD-12**: Step 1 load updates broker status to "in_progress" in database
+- [x] **ONBD-13**: Current step is persisted to database so brokers can resume where they left off on page refresh
 
 ### Guard Pages
 
@@ -46,7 +46,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Design & UX
 
-- [ ] **DSGN-01**: Dark theme with light text and red accent color for CTAs and key numbers
+- [x] **DSGN-01**: Dark theme with light text and red accent color for CTAs and key numbers
 - [ ] **DSGN-02**: Mobile-first responsive design with touch-friendly targets (min 44px)
 - [ ] **DSGN-03**: BadAAAS logo placeholder displayed at top of every onboarding screen
 - [ ] **DSGN-04**: Smooth transitions between steps with subtle animations
@@ -112,17 +112,17 @@ Deferred to future release. Tracked but not in current roadmap.
 | ONBD-07 | Phase 2 | Pending |
 | ONBD-08 | Phase 2 | Pending |
 | ONBD-09 | Phase 2 | Pending |
-| ONBD-10 | Phase 2 | Pending |
-| ONBD-11 | Phase 2 | Pending |
-| ONBD-12 | Phase 2 | Pending |
-| ONBD-13 | Phase 2 | Pending |
+| ONBD-10 | Phase 2 | Complete |
+| ONBD-11 | Phase 2 | Complete |
+| ONBD-12 | Phase 2 | Complete |
+| ONBD-13 | Phase 2 | Complete |
 | GARD-01 | Phase 2 | Pending |
 | GARD-02 | Phase 2 | Pending |
 | ADMN-01 | Phase 3 | Pending |
 | ADMN-02 | Phase 3 | Pending |
 | ADMN-03 | Phase 3 | Pending |
 | ADMN-04 | Phase 3 | Pending |
-| DSGN-01 | Phase 2 | Pending |
+| DSGN-01 | Phase 2 | Complete |
 | DSGN-02 | Phase 2 | Pending |
 | DSGN-03 | Phase 2 | Pending |
 | DSGN-04 | Phase 4 | Pending |
