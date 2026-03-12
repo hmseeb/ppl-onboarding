@@ -11,7 +11,7 @@ See: .planning/PROJECT.md (updated 2026-03-11)
 
 Phase: All 4 phases complete ✅
 Status: Live on Vercel (ppl-onboarding.vercel.app)
-Last activity: 2026-03-11 — Post-roadmap UX improvements
+Last activity: 2026-03-12 — Quick task: broker edit/delete
 
 Progress: [██████████] 100% (roadmap complete)
 
@@ -56,6 +56,13 @@ All previous decisions plus:
 - Post-roadmap: Admin dashboard switched from `<Table>` to expandable `<Card>` layout for mobile responsiveness
 - Post-roadmap: Native `<input type="time">` replaced with `<select>` dropdowns — native picker broken on dark themes
 - Post-roadmap: Daniel's phone updated to (404) 939-4848
+- Quick-1: Field whitelist for PATCH prevents mass assignment
+- Quick-1: window.confirm for delete (simple, admin-only)
+- Quick-1: Only changed fields sent in PATCH request
+
+### Quick Tasks
+
+- **QUICK-1** (2026-03-12): Added broker edit/delete. DELETE + PATCH API at `/api/admin/brokers/[id]`, inline edit mode and delete with confirmation in BrokerCard.
 
 ### Pending Todos
 
@@ -69,6 +76,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-11 (evening)
-Stopped at: Post-roadmap UX improvements deployed to Vercel
+Last session: 2026-03-12
+Stopped at: Completed quick-1 (broker edit/delete)
 Resume file: None
