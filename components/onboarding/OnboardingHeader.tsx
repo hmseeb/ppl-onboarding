@@ -11,7 +11,7 @@ export function OnboardingHeader({ currentStep, totalSteps }: OnboardingHeaderPr
   return (
     <div className="max-w-md mx-auto px-4 pt-8 pb-4">
       <div className="text-center mb-6">
-        <span className="font-heading text-sm tracking-[0.3em] uppercase text-primary font-semibold drop-shadow-[0_0_8px_rgba(124,58,237,0.4)]">
+        <span className="font-heading text-sm tracking-[0.3em] uppercase text-primary font-semibold drop-shadow-[0_0_8px_rgba(220,38,38,0.4)]">
           BadAAAS
         </span>
         <div className="flex items-center justify-center gap-3 mt-2">

@@ -39,7 +39,7 @@ const timeSlots = [
   '10:00 PM',
 ]
 
-const selectClass = 'w-full min-h-[44px] rounded-xl border border-border bg-[rgba(124,58,237,0.04)] backdrop-blur-sm px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50'
+const selectClass = 'w-full min-h-[44px] rounded-xl border border-border bg-[rgba(220,38,38,0.04)] backdrop-blur-sm px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50'
 
 export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   const defaultMethods: DeliveryMethod[] = broker.delivery_methods?.length

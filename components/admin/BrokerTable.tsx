@@ -33,7 +33,7 @@ function StatusBadge({ status }: { status: BrokerStatus }) {
       return <Badge variant="secondary" className="bg-muted text-muted-foreground text-[11px]">Not Started</Badge>
     case 'in_progress':
       return (
-        <Badge variant="secondary" className="bg-primary/10 text-purple-400 border border-primary/20 text-[11px]">
+        <Badge variant="secondary" className="bg-primary/10 text-red-400 border border-primary/20 text-[11px]">
           In Progress
         </Badge>
       )
@@ -117,7 +117,7 @@ function BrokerCard({ broker }: { broker: Broker }) {
 
       {/* Expanded detail panel */}
       {expanded && (
-        <div className="border-t border-primary/10 px-4 py-3 space-y-4" style={{ background: 'rgba(124, 58, 237, 0.04)' }}>
+        <div className="border-t border-primary/10 px-4 py-3 space-y-4" style={{ background: 'rgba(220, 38, 38, 0.04)' }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
             {/* Left — broker info */}
             <div>

@@ -47,12 +47,12 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         {/* Glass card */}
         <div className="glass rounded-xl p-8 space-y-6 animate-fadeSlideIn delay-1">
-          {/* Lock icon with purple gradient glow */}
+          {/* Lock icon with red gradient glow */}
           <div className="animate-fadeSlideIn delay-2 flex justify-center">
             <div className="relative">
               <div className="absolute inset-0 blur-xl opacity-50 bg-primary rounded-full scale-150" />
               <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center">
-                <Lock className="h-6 w-6 text-primary drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]" />
+                <Lock className="h-6 w-6 text-primary drop-shadow-[0_0_8px_rgba(220,38,38,0.5)]" />
               </div>
             </div>
           </div>
