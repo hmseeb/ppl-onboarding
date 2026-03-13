@@ -18,8 +18,8 @@ export const GHLWebhookSchema = z.object({
   primary_vertical: z.string().optional().nullable(),
   secondary_vertical: z.string().optional().nullable(),
   // z.coerce handles GHL sending numbers as strings
-  batch_size: z.coerce.number().int().positive(),
-  deal_amount: z.coerce.number().positive(),
+  batch_size: z.coerce.number().int().positive().max(10_000),
+  deal_amount: z.coerce.number().positive().max(10_000_000),
 })
 
 export type GHLWebhookPayload = z.infer<typeof GHLWebhookSchema>
