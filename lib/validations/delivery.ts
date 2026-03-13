@@ -14,6 +14,8 @@ export const DeliveryPrefsSchema = z
     custom_hours_end: z.string().optional().or(z.literal('')),
     weekend_pause: z.boolean(),
     timezone: z.string().min(1, 'Select a timezone'),
+    primary_vertical: z.string().optional().or(z.literal('')),
+    secondary_vertical: z.string().optional().or(z.literal('')),
   })
   .refine(
     (data) => {

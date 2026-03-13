@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { DeliveryPrefsSchema, type DeliveryPrefs, type DeliveryMethod } from '@/lib/validations/delivery'
@@ -8,6 +9,15 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+
+const VERTICALS = [
+  'MCA',
+  'Equipment',
+  'SBA',
+  'Real Estate',
+  'Business Line of Credit',
+  'Invoice Factoring',
+] as const
 
 interface Step2DeliveryProps {
   broker: Broker
@@ -48,6 +58,21 @@ const US_TIMEZONES = [
   { value: 'Pacific/Honolulu', label: 'Hawaii (HT)' },
 ]
 
+const US_TZ_VALUES = US_TIMEZONES.map((tz) => tz.value)
+
+/** Map device timezone to the closest US timezone. Defaults to Eastern if no match. */
+function resolveUSTimezone(detected: string): string {
+  if (US_TZ_VALUES.includes(detected)) return detected
+  // Map common IANA aliases to US zones by UTC offset
+  const offsetHours = new Date().getTimezoneOffset() / -60
+  if (offsetHours <= -10) return 'Pacific/Honolulu'
+  if (offsetHours <= -9) return 'America/Anchorage'
+  if (offsetHours <= -8) return 'America/Los_Angeles'
+  if (offsetHours <= -7) return 'America/Denver'
+  if (offsetHours <= -6) return 'America/Chicago'
+  return 'America/New_York'
+}
+
 const selectClass = 'w-full min-h-[44px] rounded-xl border border-border bg-[rgba(220,38,38,0.04)] backdrop-blur-sm px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50'
 
 export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
@@ -72,9 +97,19 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       custom_hours_start: broker.custom_hours_start ?? '',
       custom_hours_end: broker.custom_hours_end ?? '',
       weekend_pause: broker.weekend_pause ?? false,
-      timezone: broker.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
+      timezone: broker.timezone ?? '',
+      primary_vertical: broker.primary_vertical ?? '',
+      secondary_vertical: broker.secondary_vertical ?? '',
     },
   })
+
+  // Auto-detect timezone on the client (not server) so Intl returns the user's actual timezone
+  useEffect(() => {
+    if (!broker.timezone) {
+      const detected = Intl.DateTimeFormat().resolvedOptions().timeZone
+      setValue('timezone', resolveUSTimezone(detected))
+    }
+  }, [broker.timezone, setValue])
 
   const selectedMethods = watch('delivery_methods')
   const contactHours = watch('contact_hours')
@@ -200,6 +235,41 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
         </CardContent>
       </Card>
 
+      {/* Verticals */}
+      <Card className="glass border-border shadow-sm animate-fadeSlideIn delay-2">
+        <CardContent className="pt-6 space-y-3">
+          <Label className="text-sm font-heading uppercase tracking-wider">What verticals do you work?</Label>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label htmlFor="primary_vertical" className="text-xs text-muted-foreground">Primary</Label>
+              <select
+                id="primary_vertical"
+                {...register('primary_vertical')}
+                className={selectClass}
+              >
+                <option value="">Select</option>
+                {VERTICALS.map((v) => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
+              </select>
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="secondary_vertical" className="text-xs text-muted-foreground">Secondary</Label>
+              <select
+                id="secondary_vertical"
+                {...register('secondary_vertical')}
+                className={selectClass}
+              >
+                <option value="">None</option>
+                {VERTICALS.map((v) => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Contact Hours */}
       <Card className="glass border-border shadow-sm animate-fadeSlideIn delay-2">
         <CardContent className="pt-6 space-y-3">
@@ -266,7 +336,6 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
             {...register('timezone')}
             className={selectClass}
           >
-            <option value="">Select timezone</option>
             {US_TIMEZONES.map((tz) => (
               <option key={tz.value} value={tz.value}>
                 {tz.label}

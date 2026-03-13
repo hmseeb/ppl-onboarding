@@ -48,6 +48,8 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
   const company = (formData.company_name as string) ?? broker.company_name
   const email = (formData.email as string) ?? broker.email
   const phone = (formData.phone as string) ?? broker.phone
+  const primaryVertical = (formData.primary_vertical as string) || broker.primary_vertical
+  const secondaryVertical = (formData.secondary_vertical as string) || broker.secondary_vertical
   const deliveryMethods = (formData.delivery_methods as string[]) ?? broker.delivery_methods
 
   return (
@@ -85,11 +87,14 @@ export function Step7Confirm({ broker, formData }: Step7ConfirmProps) {
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading">Vertical(s)</p>
             <div className="flex gap-2 mt-1">
-              {broker.primary_vertical && (
-                <Badge variant="secondary">{broker.primary_vertical}</Badge>
-              )}
-              {broker.secondary_vertical && (
-                <Badge variant="secondary">{broker.secondary_vertical}</Badge>
+              {primaryVertical ? (
+                <Badge variant="secondary">{primaryVertical}</Badge>
+              ) : null}
+              {secondaryVertical ? (
+                <Badge variant="secondary">{secondaryVertical}</Badge>
+              ) : null}
+              {!primaryVertical && !secondaryVertical && (
+                <span className="text-sm text-muted-foreground">Not specified</span>
               )}
             </div>
           </div>

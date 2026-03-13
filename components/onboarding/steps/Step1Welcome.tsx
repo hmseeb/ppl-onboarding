@@ -112,6 +112,9 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
                     {broker.secondary_vertical && (
                       <Badge variant="secondary">{broker.secondary_vertical}</Badge>
                     )}
+                    {!broker.primary_vertical && !broker.secondary_vertical && (
+                      <p className="text-base font-medium text-muted-foreground">Not specified</p>
+                    )}
                   </div>
                 </div>
                 <div>
