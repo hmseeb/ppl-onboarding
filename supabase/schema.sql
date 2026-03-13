@@ -27,6 +27,7 @@ CREATE TABLE brokers (
   custom_hours_start text,
   custom_hours_end   text,
   weekend_pause   boolean DEFAULT false,
+  timezone        text,
 
   -- Step persistence (populated in Phase 2)
   current_step    integer DEFAULT 1,

@@ -13,6 +13,7 @@ export const DeliveryPrefsSchema = z
     custom_hours_start: z.string().optional().or(z.literal('')),
     custom_hours_end: z.string().optional().or(z.literal('')),
     weekend_pause: z.boolean(),
+    timezone: z.string().min(1, 'Select a timezone'),
   })
   .refine(
     (data) => {

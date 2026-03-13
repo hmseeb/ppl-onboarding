@@ -289,6 +289,12 @@ function BrokerCard({ broker, onDelete, onUpdate }: BrokerCardProps) {
               <Clock className="h-3.5 w-3.5" />
               <ContactHoursDisplay broker={broker} />
             </span>
+            {broker.timezone && (
+              <span className="flex items-center gap-1.5">
+                <Globe className="h-3.5 w-3.5" />
+                {broker.timezone.replace('_', ' ').split('/').pop()}
+              </span>
+            )}
             {broker.weekend_pause && (
               <span className="flex items-center gap-1.5 text-primary">
                 <Pause className="h-3.5 w-3.5" />

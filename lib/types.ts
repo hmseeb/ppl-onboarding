@@ -22,6 +22,7 @@ export interface Broker {
   custom_hours_start: string | null
   custom_hours_end: string | null
   weekend_pause: boolean
+  timezone: string | null
   current_step: number
   step_data: Record<string, unknown> | null
   status: BrokerStatus

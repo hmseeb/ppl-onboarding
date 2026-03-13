@@ -39,6 +39,15 @@ const timeSlots = [
   '10:00 PM',
 ]
 
+const US_TIMEZONES = [
+  { value: 'America/New_York', label: 'Eastern (ET)' },
+  { value: 'America/Chicago', label: 'Central (CT)' },
+  { value: 'America/Denver', label: 'Mountain (MT)' },
+  { value: 'America/Los_Angeles', label: 'Pacific (PT)' },
+  { value: 'America/Anchorage', label: 'Alaska (AKT)' },
+  { value: 'Pacific/Honolulu', label: 'Hawaii (HT)' },
+]
+
 const selectClass = 'w-full min-h-[44px] rounded-xl border border-border bg-[rgba(220,38,38,0.04)] backdrop-blur-sm px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50'
 
 export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
@@ -63,6 +72,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       custom_hours_start: broker.custom_hours_start ?? '',
       custom_hours_end: broker.custom_hours_end ?? '',
       weekend_pause: broker.weekend_pause ?? false,
+      timezone: broker.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
   })
 
@@ -245,8 +255,32 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
         </CardContent>
       </Card>
 
-      {/* Weekend Pause Toggle */}
+      {/* Timezone */}
       <Card className="glass border-border shadow-sm animate-fadeSlideIn delay-3">
+        <CardContent className="pt-6 space-y-3">
+          <Label htmlFor="timezone" className="text-sm font-heading uppercase tracking-wider">
+            Your timezone
+          </Label>
+          <select
+            id="timezone"
+            {...register('timezone')}
+            className={selectClass}
+          >
+            <option value="">Select timezone</option>
+            {US_TIMEZONES.map((tz) => (
+              <option key={tz.value} value={tz.value}>
+                {tz.label}
+              </option>
+            ))}
+          </select>
+          {errors.timezone && (
+            <p className="text-xs text-destructive">{errors.timezone.message}</p>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Weekend Pause Toggle */}
+      <Card className="glass border-border shadow-sm animate-fadeSlideIn delay-4">
         <CardContent className="pt-6">
           <label className="flex items-center justify-between cursor-pointer min-h-[44px]">
             <span className="font-heading font-semibold">Pause referrals on weekends?</span>
@@ -270,7 +304,7 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
       </Card>
 
       {/* Navigation */}
-      <div className="flex gap-3 animate-fadeSlideIn delay-4">
+      <div className="flex gap-3 animate-fadeSlideIn delay-5">
         <Button
           type="button"
           variant="ghost"

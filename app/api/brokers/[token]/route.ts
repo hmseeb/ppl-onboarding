@@ -11,7 +11,7 @@ export async function GET(
   const { data: broker, error } = await supabase
     .from('brokers')
     .select(
-      'first_name, last_name, email, phone, company_name, state, primary_vertical, secondary_vertical, batch_size, deal_amount, status, current_step, delivery_methods, delivery_email, delivery_phone, crm_webhook_url, contact_hours, custom_hours_start, custom_hours_end, weekend_pause, created_at, completed_at'
+      'first_name, last_name, email, phone, company_name, state, primary_vertical, secondary_vertical, batch_size, deal_amount, status, current_step, delivery_methods, delivery_email, delivery_phone, crm_webhook_url, contact_hours, custom_hours_start, custom_hours_end, weekend_pause, timezone, created_at, completed_at'
     )
     .eq('token', token)
     .single()

@@ -21,6 +21,7 @@ const EDITABLE_FIELDS = [
   'custom_hours_start',
   'custom_hours_end',
   'weekend_pause',
+  'timezone',
 ] as const
 
 function verifyAdmin(request: NextRequest) {

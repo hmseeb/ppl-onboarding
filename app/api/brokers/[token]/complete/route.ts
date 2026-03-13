@@ -30,6 +30,7 @@ export async function POST(
       custom_hours_start: formData.custom_hours_start || null,
       custom_hours_end: formData.custom_hours_end || null,
       weekend_pause: formData.weekend_pause,
+      timezone: formData.timezone,
     })
     .eq('token', token)
     .select()
