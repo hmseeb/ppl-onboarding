@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { DeliveryPrefsSchema, type DeliveryPrefs, type DeliveryMethod } from '@/lib/validations/delivery'
@@ -114,6 +114,40 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
   const selectedMethods = watch('delivery_methods')
   const contactHours = watch('contact_hours')
   const weekendPause = watch('weekend_pause')
+  const webhookUrl = watch('crm_webhook_url')
+
+  const [testState, setTestState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [testMessage, setTestMessage] = useState('')
+
+  const isValidUrl = useCallback((url: string | undefined) => {
+    if (!url) return false
+    try { new URL(url); return true } catch { return false }
+  }, [])
+
+  const sendTestWebhook = async () => {
+    if (!isValidUrl(webhookUrl)) return
+    setTestState('loading')
+    setTestMessage('')
+    try {
+      const res = await fetch('/api/test-webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ webhook_url: webhookUrl }),
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setTestState('success')
+        setTestMessage(`Delivered (${data.status} ${data.statusText})`)
+      } else {
+        setTestState('error')
+        setTestMessage(data.error || `Failed (${data.status} ${data.statusText})`)
+      }
+    } catch {
+      setTestState('error')
+      setTestMessage('Network error — could not reach server')
+    }
+    setTimeout(() => setTestState('idle'), 5000)
+  }
 
   const toggleMethod = (method: DeliveryMethod) => {
     const current = selectedMethods ?? []
@@ -230,6 +264,54 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
               {errors.crm_webhook_url && (
                 <p className="text-xs text-destructive">{errors.crm_webhook_url.message}</p>
               )}
+
+              {/* Test Webhook Button */}
+              <div className="pt-2 space-y-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={!isValidUrl(webhookUrl) || testState === 'loading'}
+                  onClick={sendTestWebhook}
+                  className="gap-2"
+                >
+                  {testState === 'loading' ? (
+                    <>
+                      <svg className="animate-spin size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                      </svg>
+                      Send Test Payload
+                    </>
+                  )}
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Send a sample lead to verify your webhook mapping
+                </p>
+                {testState === 'success' && (
+                  <p className="text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
+                    <svg className="size-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {testMessage}
+                  </p>
+                )}
+                {testState === 'error' && (
+                  <p className="text-xs text-destructive flex items-center gap-1">
+                    <svg className="size-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                    </svg>
+                    {testMessage}
+                  </p>
+                )}
+              </div>
             </div>
           )}
         </CardContent>
