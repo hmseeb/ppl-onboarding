@@ -21,6 +21,7 @@ const VERTICALS = [
 
 interface Step2DeliveryProps {
   broker: Broker
+  formData: Record<string, unknown>
   onNext: (data: Record<string, unknown>) => void
   onBack: () => void
 }
@@ -75,10 +76,10 @@ function resolveUSTimezone(detected: string): string {
 
 const selectClass = 'w-full min-h-[44px] rounded-xl border border-border bg-[rgba(220,38,38,0.04)] backdrop-blur-sm px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50'
 
-export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
-  const defaultMethods: DeliveryMethod[] = broker.delivery_methods?.length
-    ? (broker.delivery_methods as DeliveryMethod[])
-    : ['sms']
+export function Step2Delivery({ broker, formData, onNext, onBack }: Step2DeliveryProps) {
+  const defaultMethods: DeliveryMethod[] =
+    (formData.delivery_methods as DeliveryMethod[]) ??
+    (broker.delivery_methods?.length ? (broker.delivery_methods as DeliveryMethod[]) : ['sms'])
 
   const {
     register,
@@ -90,14 +91,14 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
     resolver: zodResolver(DeliveryPrefsSchema),
     defaultValues: {
       delivery_methods: defaultMethods,
-      crm_webhook_url: broker.crm_webhook_url ?? '',
-      contact_hours: (broker.contact_hours as DeliveryPrefs['contact_hours']) ?? 'business_hours',
-      custom_hours_start: broker.custom_hours_start ?? '',
-      custom_hours_end: broker.custom_hours_end ?? '',
-      weekend_pause: broker.weekend_pause ?? false,
-      timezone: broker.timezone ?? '',
-      primary_vertical: broker.primary_vertical ?? '',
-      secondary_vertical: broker.secondary_vertical ?? '',
+      crm_webhook_url: (formData.crm_webhook_url as string) ?? broker.crm_webhook_url ?? '',
+      contact_hours: (formData.contact_hours as DeliveryPrefs['contact_hours']) ?? (broker.contact_hours as DeliveryPrefs['contact_hours']) ?? 'business_hours',
+      custom_hours_start: (formData.custom_hours_start as string) ?? broker.custom_hours_start ?? '',
+      custom_hours_end: (formData.custom_hours_end as string) ?? broker.custom_hours_end ?? '',
+      weekend_pause: (formData.weekend_pause as boolean) ?? broker.weekend_pause ?? false,
+      timezone: (formData.timezone as string) ?? broker.timezone ?? '',
+      primary_vertical: (formData.primary_vertical as string) ?? broker.primary_vertical ?? '',
+      secondary_vertical: (formData.secondary_vertical as string) ?? broker.secondary_vertical ?? '',
     },
   })
 

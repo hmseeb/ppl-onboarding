@@ -52,8 +52,36 @@ export async function POST(req: NextRequest) {
 
     clearTimeout(timeout)
 
+    // Read response body for error context
+    let responseBody = ''
+    try {
+      responseBody = await response.text()
+    } catch {
+      // ignore read errors
+    }
+
+    if (!response.ok) {
+      // Try to extract a meaningful error message from the response
+      let errorMessage = `${response.status} ${response.statusText}`
+      try {
+        const json = JSON.parse(responseBody)
+        if (json.message) errorMessage = json.message
+        else if (json.error) errorMessage = json.error
+      } catch {
+        if (responseBody.length > 0 && responseBody.length < 200) {
+          errorMessage = responseBody
+        }
+      }
+      return NextResponse.json({
+        success: false,
+        status: response.status,
+        statusText: response.statusText,
+        error: errorMessage,
+      })
+    }
+
     return NextResponse.json({
-      success: response.ok,
+      success: true,
       status: response.status,
       statusText: response.statusText,
     })

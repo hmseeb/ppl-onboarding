@@ -5,7 +5,7 @@ export async function PATCH(
   { params }: { params: Promise<{ token: string }> }
 ) {
   const { token } = await params
-  const { step } = await request.json()
+  const { step, step_data } = await request.json()
 
   // Validate step is a number between 1 and 7
   if (typeof step !== 'number' || step < 1 || step > 7) {
@@ -17,9 +17,14 @@ export async function PATCH(
 
   const supabase = createServiceClient()
 
+  const updatePayload: Record<string, unknown> = { current_step: step }
+  if (step_data && typeof step_data === 'object') {
+    updatePayload.step_data = step_data
+  }
+
   const { error } = await supabase
     .from('brokers')
-    .update({ current_step: step })
+    .update(updatePayload)
     .eq('token', token)
 
   if (error) {

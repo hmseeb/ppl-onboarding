@@ -19,7 +19,9 @@ interface OnboardingStepperProps {
 
 export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
   const [currentStep, setCurrentStep] = useState(broker.current_step ?? 1)
-  const [formData, setFormData] = useState<Record<string, unknown>>({})
+  const [formData, setFormData] = useState<Record<string, unknown>>(
+    (broker.step_data as Record<string, unknown>) ?? {}
+  )
 
   // Fire POST to /api/brokers/[token]/start on mount if status is 'not_started'
   useEffect(() => {
@@ -37,14 +39,14 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
   }, [broker.status, token])
 
   const goToStep = useCallback(
-    (step: number) => {
+    (step: number, latestFormData?: Record<string, unknown>) => {
       setCurrentStep(step)
       window.scrollTo({ top: 0, behavior: 'smooth' })
-      // Fire-and-forget step persistence
+      // Fire-and-forget step + formData persistence
       fetch(`/api/brokers/${token}/step`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ step }),
+        body: JSON.stringify({ step, step_data: latestFormData }),
       }).catch(() => {
         // Silently ignore errors — step persistence is non-blocking
       })
@@ -65,18 +67,19 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
 
   const handleNext = useCallback(
     (stepData?: Record<string, unknown>) => {
+      const merged = stepData ? { ...formData, ...stepData } : formData
       if (stepData) {
-        setFormData((prev) => ({ ...prev, ...stepData }))
+        setFormData(merged)
       }
       if (currentStep < 7) {
         // Fire completion when leaving step 6 (policy acceptance = the handshake)
         if (currentStep === 6) {
           handleComplete()
         }
-        goToStep(currentStep + 1)
+        goToStep(currentStep + 1, merged)
       }
     },
-    [currentStep, goToStep, handleComplete]
+    [currentStep, formData, goToStep, handleComplete]
   )
 
   const handleBack = useCallback(() => {
@@ -91,10 +94,10 @@ export function OnboardingStepper({ broker, token }: OnboardingStepperProps) {
       <main className="max-w-md mx-auto px-4 pb-24">
         <StepTransition stepKey={currentStep}>
           {currentStep === 1 && (
-            <Step1Welcome broker={broker} onNext={handleNext} />
+            <Step1Welcome broker={broker} formData={formData} onNext={handleNext} />
           )}
           {currentStep === 2 && (
-            <Step2Delivery broker={broker} onNext={handleNext} onBack={handleBack} />
+            <Step2Delivery broker={broker} formData={formData} onNext={handleNext} onBack={handleBack} />
           )}
           {currentStep === 3 && (
             <Step3HowItWorks onNext={() => handleNext()} onBack={handleBack} />

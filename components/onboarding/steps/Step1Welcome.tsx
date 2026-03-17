@@ -24,10 +24,11 @@ type Step1Data = z.infer<typeof Step1Schema>
 
 interface Step1WelcomeProps {
   broker: Broker
+  formData: Record<string, unknown>
   onNext: (data: Record<string, unknown>) => void
 }
 
-export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
+export function Step1Welcome({ broker, formData, onNext }: Step1WelcomeProps) {
   const [isEditing, setIsEditing] = useState(false)
 
   const {
@@ -38,11 +39,11 @@ export function Step1Welcome({ broker, onNext }: Step1WelcomeProps) {
   } = useForm<Step1Data>({
     resolver: zodResolver(Step1Schema),
     defaultValues: {
-      first_name: broker.first_name,
-      last_name: broker.last_name,
-      email: broker.email,
-      phone: broker.phone ?? '',
-      company_name: broker.company_name ?? '',
+      first_name: (formData.first_name as string) ?? broker.first_name,
+      last_name: (formData.last_name as string) ?? broker.last_name,
+      email: (formData.email as string) ?? broker.email,
+      phone: (formData.phone as string) ?? broker.phone ?? '',
+      company_name: (formData.company_name as string) ?? broker.company_name ?? '',
     },
   })
 
