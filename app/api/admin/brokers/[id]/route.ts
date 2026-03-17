@@ -14,8 +14,6 @@ const EDITABLE_FIELDS = [
   'batch_size',
   'deal_amount',
   'delivery_methods',
-  'delivery_email',
-  'delivery_phone',
   'crm_webhook_url',
   'contact_hours',
   'custom_hours_start',

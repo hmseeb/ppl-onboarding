@@ -90,8 +90,6 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
     resolver: zodResolver(DeliveryPrefsSchema),
     defaultValues: {
       delivery_methods: defaultMethods,
-      delivery_email: broker.delivery_email ?? broker.email ?? '',
-      delivery_phone: broker.delivery_phone ?? broker.phone ?? '',
       crm_webhook_url: broker.crm_webhook_url ?? '',
       contact_hours: (broker.contact_hours as DeliveryPrefs['contact_hours']) ?? 'business_hours',
       custom_hours_start: broker.custom_hours_start ?? '',
@@ -216,39 +214,6 @@ export function Step2Delivery({ broker, onNext, onBack }: Step2DeliveryProps) {
           </div>
           {errors.delivery_methods && (
             <p className="text-xs text-destructive">{errors.delivery_methods.message}</p>
-          )}
-
-          {/* Conditional fields — shown for each selected method */}
-          {selectedMethods?.includes('sms') && (
-            <div className="space-y-1 pt-2">
-              <Label htmlFor="delivery_phone">Phone Number for SMS</Label>
-              <Input
-                id="delivery_phone"
-                type="tel"
-                {...register('delivery_phone')}
-                className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
-                placeholder="(555) 555-5555"
-              />
-              {errors.delivery_phone && (
-                <p className="text-xs text-destructive">{errors.delivery_phone.message}</p>
-              )}
-            </div>
-          )}
-
-          {selectedMethods?.includes('email') && (
-            <div className="space-y-1 pt-2">
-              <Label htmlFor="delivery_email">Email Address</Label>
-              <Input
-                id="delivery_email"
-                type="email"
-                {...register('delivery_email')}
-                className="min-h-[44px] focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
-                placeholder="you@company.com"
-              />
-              {errors.delivery_email && (
-                <p className="text-xs text-destructive">{errors.delivery_email.message}</p>
-              )}
-            </div>
           )}
 
           {selectedMethods?.includes('crm_webhook') && (

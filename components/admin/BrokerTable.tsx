@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import type { Broker, BrokerStatus } from '@/lib/types'
 import { Badge } from '@/components/ui/badge'
 import { CopyLinkButton } from '@/components/admin/CopyLinkButton'
-import { ChevronDown, ChevronLeft, ChevronRight, Phone, Mail, Globe, Clock, Pause, Loader2, Search, X, Trash2, Pencil, Save, XCircle } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight, Globe, Clock, Pause, Loader2, Search, X, Trash2, Pencil, Save, XCircle } from 'lucide-react'
 
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return '\u2014'
@@ -271,12 +271,6 @@ function BrokerCard({ broker, onDelete, onUpdate }: BrokerCardProps) {
                 </>
               )}
               <DetailRow label="Delivery" value={<DeliveryBadges methods={broker.delivery_methods} />} />
-              {broker.delivery_email && (
-                <DetailRow label="" value={<span className="flex items-center gap-1.5 text-xs"><Mail className="h-3 w-3 text-muted-foreground" />{broker.delivery_email}</span>} />
-              )}
-              {broker.delivery_phone && (
-                <DetailRow label="" value={<span className="flex items-center gap-1.5 text-xs"><Phone className="h-3 w-3 text-muted-foreground" />{broker.delivery_phone}</span>} />
-              )}
               {broker.crm_webhook_url && (
                 <DetailRow label="" value={<span className="flex items-center gap-1.5 text-xs"><Globe className="h-3 w-3 text-muted-foreground" /><span className="truncate max-w-[200px]">{broker.crm_webhook_url}</span></span>} />
               )}

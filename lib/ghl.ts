@@ -21,8 +21,6 @@ export async function notifyGHL(broker: Broker): Promise<void> {
         onboarding_status: 'completed',
         delivery_preferences: {
           delivery_methods: broker.delivery_methods,
-          delivery_email: broker.delivery_email,
-          delivery_phone: broker.delivery_phone,
           crm_webhook_url: broker.crm_webhook_url,
           contact_hours: broker.contact_hours,
           custom_hours_start: broker.custom_hours_start,

@@ -15,8 +15,6 @@ export interface Broker {
   batch_size: number
   deal_amount: number
   delivery_methods: string[] | null
-  delivery_email: string | null
-  delivery_phone: string | null
   crm_webhook_url: string | null
   contact_hours: string | null
   custom_hours_start: string | null
